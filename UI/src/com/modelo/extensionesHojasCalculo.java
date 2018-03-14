@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.modelo.conversiones;
+package com.modelo;
 
 /**
  *
  * @author Juan Camilo
  */
-public class extensionesPresetaciones {
-    String[] listaExportaciones = {"Office Power point","Open Office presentaciones","PDF"};
-    String[] office = {"application/vnd.openxmlformats-officedocument.presentationml.presentation",".pptx"};
-    String[] open = {"application/vnd.oasis.opendocument.presentation",".odp"};
+public class extensionesHojasCalculo {
+    String[] listaExportaciones = {"Office Excel","Open Office Hoja de calculo","PDF"};
+    String[] Excel = {"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",".xlsx"};
+    String[] open = {"application/x-vnd.oasis.opendocument.spreadsheet",".ods"};
     String[] pdf = {"application/pdf",".pdf"};
     
     public String[] conversiones(){
@@ -20,7 +20,7 @@ public class extensionesPresetaciones {
     }
     
     public String[] docx(){
-        return office;
+        return Excel;
     }
     
     public String[] open(){

@@ -6,10 +6,10 @@
 package com.vista.Drive.archivos;
 
 import com.controlador.Control_fuentes;
-import com.modelo.conversiones.extensionesDocumento;
-import com.modelo.conversiones.extensionesHojasCalculo;
-import com.modelo.conversiones.extensionesImagenes;
-import com.modelo.conversiones.extensionesPresetaciones;
+import com.modelo.extensionesDocumento;
+import com.modelo.extensionesHojasCalculo;
+import com.modelo.extensionesImagenes;
+import com.modelo.extensionesPresetaciones;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -26,10 +26,10 @@ public class Conversion extends javax.swing.JDialog implements MouseListener{
     List<panelConvert> paneles;
     String[] lista;
     String tipo;
-    com.modelo.conversiones.extensionesDocumento Documeto;
-    com.modelo.conversiones.extensionesHojasCalculo Calculo;
-    com.modelo.conversiones.extensionesImagenes Imagen;
-    com.modelo.conversiones.extensionesPresetaciones Presentacion;
+    com.modelo.extensionesDocumento Documeto;
+    com.modelo.extensionesHojasCalculo Calculo;
+    com.modelo.extensionesImagenes Imagen;
+    com.modelo.extensionesPresetaciones Presentacion;
     int pos;
     /**
      * Creates new form Conversion

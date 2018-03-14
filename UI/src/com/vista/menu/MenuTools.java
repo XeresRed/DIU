@@ -5,6 +5,7 @@
  */
 package com.vista.menu;
 
+import com.modelo.Usuarios;
 import com.vista.Index;
 import java.awt.Color;
 
@@ -14,12 +15,15 @@ import java.awt.Color;
  */
 public class MenuTools extends javax.swing.JPanel {
     Index vista;
+    Usuarios usuario;
     /**
      * Creates new form MenuTools
      */
-    public MenuTools(Index view) {
+    public MenuTools(Index view,Usuarios user) {
         initComponents();
         vista = view;
+        usuario = user;
+        nombreUsuario.setText(usuario.getNombre());
     }
 
     /**

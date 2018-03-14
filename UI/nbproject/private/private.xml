@@ -4,10 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Juan%20Camilo/Documents/NetBeansProjects/UI/src/com/vista/Drive/DriveFiles.java</file>
+            <file>file:/C:/Users/Juan%20Camilo/Documents/NetBeansProjects/UI/src/com/vista/agenda/agendarTools.java</file>
+            <file>file:/C:/Users/Juan%20Camilo/Documents/NetBeansProjects/UI/src/com/vista/Drive/autenticacion.java</file>
             <file>file:/C:/Users/Juan%20Camilo/Documents/NetBeansProjects/UI/src/com/vista/Index.java</file>
+            <file>file:/C:/Users/Juan%20Camilo/Documents/NetBeansProjects/UI/src/com/controlador/LogicaUsuario.java</file>
+            <file>file:/C:/Users/Juan%20Camilo/Documents/NetBeansProjects/UI/src/com/controlador/hiloEspera.java</file>
+            <file>file:/C:/Users/Juan%20Camilo/Documents/NetBeansProjects/UI/src/com/vista/Registro.java</file>
+            <file>file:/C:/Users/Juan%20Camilo/Documents/NetBeansProjects/UI/src/com/controlador/encriptador.java</file>
             <file>file:/C:/Users/Juan%20Camilo/Documents/NetBeansProjects/UI/src/com/vista/menu/MenuTools.java</file>
+            <file>file:/C:/Users/Juan%20Camilo/Documents/NetBeansProjects/UI/src/com/vista/espera/Espera.java</file>
             <file>file:/C:/Users/Juan%20Camilo/Documents/NetBeansProjects/UI/src/com/vista/Drive/DriveTools.java</file>
-            <file>file:/C:/Users/Juan%20Camilo/Documents/NetBeansProjects/UI/src/com/vista/menu/MenuItems.java</file>
         </group>
     </open-files>
 </project-private>

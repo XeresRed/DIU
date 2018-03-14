@@ -7,6 +7,7 @@ package com.vista.Drive;
 
 
 import chrriis.dj.nativeswing.swtimpl.components.*;
+import com.controlador.hiloEspera;
 import com.vista.Index;
 
 /**
@@ -169,8 +170,10 @@ public class autenticacion extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         vista.llamaDrive(textCodigo.getText());
+        com.controlador.hiloEspera espera = new hiloEspera(vista);
+        espera.start();
         this.dispose();
-
+        espera.stop();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

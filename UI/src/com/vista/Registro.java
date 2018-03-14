@@ -6,6 +6,12 @@
 package com.vista;
 
 import com.controlador.Control_fuentes;
+import com.controlador.LogicaUsuario;
+import com.controlador.encriptador;
+import com.modelo.Usuarios;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,7 +28,7 @@ public class Registro extends javax.swing.JPanel {
         initComponents();
         Control_fuentes df = new Control_fuentes("des");
         jLabel1.setFont(df.MyFont(1, 24f));
-
+        nameLBL5.setVisible(false);
 
     }
 
@@ -36,18 +42,19 @@ public class Registro extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        NombreUser1 = new javax.swing.JTextField();
-        NombreUser2 = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JTextField();
+        lblCorreo = new javax.swing.JTextField();
         nameLBL3 = new javax.swing.JLabel();
         nameLBL4 = new javax.swing.JLabel();
         nameLBL5 = new javax.swing.JLabel();
         nameLBL6 = new javax.swing.JLabel();
-        contraseñaUser = new javax.swing.JPasswordField();
-        contraseñaUser1 = new javax.swing.JPasswordField();
+        lblP1 = new javax.swing.JPasswordField();
+        lblP2 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        nameLBL7 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(254, 244, 232));
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         setMinimumSize(new java.awt.Dimension(480, 410));
         setPreferredSize(new java.awt.Dimension(480, 428));
@@ -57,35 +64,35 @@ public class Registro extends javax.swing.JPanel {
         jLabel1.setText("Registro_");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, -1, -1));
 
-        NombreUser1.setBackground(new java.awt.Color(204, 204, 204));
-        NombreUser1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
-        NombreUser1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        NombreUser1.setText("Ingrese su nombre de usuario...");
-        NombreUser1.setToolTipText("");
-        NombreUser1.setBorder(null);
-        NombreUser1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        NombreUser1.setSelectedTextColor(new java.awt.Color(0, 102, 255));
-        NombreUser1.addFocusListener(new java.awt.event.FocusAdapter() {
+        lblNombre.setBackground(new java.awt.Color(204, 204, 204));
+        lblNombre.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
+        lblNombre.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        lblNombre.setText("Ingrese su nombre...");
+        lblNombre.setToolTipText("");
+        lblNombre.setBorder(null);
+        lblNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblNombre.setSelectedTextColor(new java.awt.Color(0, 102, 255));
+        lblNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                NombreUser1Seleccion(evt);
+                lblNombreSeleccion(evt);
             }
         });
-        add(NombreUser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 270, 30));
+        add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 270, 30));
 
-        NombreUser2.setBackground(new java.awt.Color(204, 204, 204));
-        NombreUser2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
-        NombreUser2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        NombreUser2.setText("Ingrese su correo electronico...");
-        NombreUser2.setToolTipText("");
-        NombreUser2.setBorder(null);
-        NombreUser2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        NombreUser2.setSelectedTextColor(new java.awt.Color(0, 102, 255));
-        NombreUser2.addFocusListener(new java.awt.event.FocusAdapter() {
+        lblCorreo.setBackground(new java.awt.Color(204, 204, 204));
+        lblCorreo.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
+        lblCorreo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        lblCorreo.setText("Ingrese su correo electronico...");
+        lblCorreo.setToolTipText("");
+        lblCorreo.setBorder(null);
+        lblCorreo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCorreo.setSelectedTextColor(new java.awt.Color(0, 102, 255));
+        lblCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                NombreUser2Seleccion(evt);
+                lblCorreoSeleccion(evt);
             }
         });
-        add(NombreUser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 270, 30));
+        add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 270, 30));
 
         nameLBL3.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         nameLBL3.setText("Contraseña");
@@ -95,41 +102,43 @@ public class Registro extends javax.swing.JPanel {
         nameLBL4.setText("Nombre de usuario:");
         add(nameLBL4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
-        nameLBL5.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
-        nameLBL5.setText("Email");
-        add(nameLBL5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+        nameLBL5.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
+        nameLBL5.setForeground(new java.awt.Color(255, 102, 102));
+        nameLBL5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nameLBL5.setText("Registro exitoso");
+        add(nameLBL5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 190, 70));
 
         nameLBL6.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         nameLBL6.setText("Repite la contraseña");
         add(nameLBL6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
 
-        contraseñaUser.setBackground(new java.awt.Color(204, 204, 204));
-        contraseñaUser.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
-        contraseñaUser.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        contraseñaUser.setText("jPasswordField1");
-        contraseñaUser.setBorder(null);
-        contraseñaUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        contraseñaUser.setSelectedTextColor(new java.awt.Color(0, 102, 255));
-        contraseñaUser.addFocusListener(new java.awt.event.FocusAdapter() {
+        lblP1.setBackground(new java.awt.Color(204, 204, 204));
+        lblP1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
+        lblP1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        lblP1.setText("jPasswordField1");
+        lblP1.setBorder(null);
+        lblP1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblP1.setSelectedTextColor(new java.awt.Color(0, 102, 255));
+        lblP1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                contraseñaUserseleccionP(evt);
+                lblP1seleccionP(evt);
             }
         });
-        add(contraseñaUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 270, 30));
+        add(lblP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 270, 30));
 
-        contraseñaUser1.setBackground(new java.awt.Color(204, 204, 204));
-        contraseñaUser1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
-        contraseñaUser1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        contraseñaUser1.setText("jPasswordField1");
-        contraseñaUser1.setBorder(null);
-        contraseñaUser1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        contraseñaUser1.setSelectedTextColor(new java.awt.Color(0, 102, 255));
-        contraseñaUser1.addFocusListener(new java.awt.event.FocusAdapter() {
+        lblP2.setBackground(new java.awt.Color(204, 204, 204));
+        lblP2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
+        lblP2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        lblP2.setText("jPasswordField1");
+        lblP2.setBorder(null);
+        lblP2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblP2.setSelectedTextColor(new java.awt.Color(0, 102, 255));
+        lblP2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                contraseñaUser1seleccionP(evt);
+                lblP2seleccionP(evt);
             }
         });
-        add(contraseñaUser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 270, 30));
+        add(lblP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 270, 30));
 
         jButton1.setBackground(new java.awt.Color(4, 222, 173));
         jButton1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
@@ -138,44 +147,78 @@ public class Registro extends javax.swing.JPanel {
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 110, 40));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/cohete.png"))); // NOI18N
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 150, 240));
+
+        nameLBL7.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        nameLBL7.setText("Email");
+        add(nameLBL7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NombreUser1Seleccion(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreUser1Seleccion
+    private void lblNombreSeleccion(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblNombreSeleccion
         // TODO add your handling code here:
-        NombreUser1.selectAll();
-    }//GEN-LAST:event_NombreUser1Seleccion
+        lblNombre.selectAll();
+    }//GEN-LAST:event_lblNombreSeleccion
 
-    private void NombreUser2Seleccion(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NombreUser2Seleccion
+    private void lblCorreoSeleccion(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblCorreoSeleccion
         // TODO add your handling code here:
-        NombreUser2.selectAll();
-    }//GEN-LAST:event_NombreUser2Seleccion
+        lblCorreo.selectAll();
+    }//GEN-LAST:event_lblCorreoSeleccion
 
-    private void contraseñaUserseleccionP(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contraseñaUserseleccionP
+    private void lblP1seleccionP(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblP1seleccionP
         // TODO add your handling code here:
-        contraseñaUser.selectAll();
-    }//GEN-LAST:event_contraseñaUserseleccionP
+        lblP1.selectAll();
+    }//GEN-LAST:event_lblP1seleccionP
 
-    private void contraseñaUser1seleccionP(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contraseñaUser1seleccionP
+    private void lblP2seleccionP(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblP2seleccionP
         // TODO add your handling code here:
-        contraseñaUser1.selectAll();
-    }//GEN-LAST:event_contraseñaUser1seleccionP
+        lblP2.selectAll();
+    }//GEN-LAST:event_lblP2seleccionP
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        com.modelo.Usuarios user = new Usuarios();
+        com.controlador.encriptador md5 = new encriptador();
+        user.setCorreo(lblCorreo.getText());
+        user.setNombre(lblNombre.getText());
+        if (lblP1.getText().equals(lblP2.getText()) && lblP1.getText().length() >= 5) {
+            
+            user.setContraseña(md5.getMD5(lblP1.getText()));
+            com.controlador.LogicaUsuario userDao = new LogicaUsuario();
+            try {
+                userDao.registrarUsuario(user);
+                nameLBL5.setVisible(true);
+            } catch (Exception ex) {
+                Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null,"atención", "Las contraseñas no coinciden o no supera 5 caracteres", JOptionPane.DEFAULT_OPTION);
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField NombreUser1;
-    private javax.swing.JTextField NombreUser2;
-    private javax.swing.JPasswordField contraseñaUser;
-    private javax.swing.JPasswordField contraseñaUser1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField lblCorreo;
+    private javax.swing.JTextField lblNombre;
+    private javax.swing.JPasswordField lblP1;
+    private javax.swing.JPasswordField lblP2;
     private javax.swing.JLabel nameLBL3;
     private javax.swing.JLabel nameLBL4;
     private javax.swing.JLabel nameLBL5;
     private javax.swing.JLabel nameLBL6;
+    private javax.swing.JLabel nameLBL7;
     // End of variables declaration//GEN-END:variables
 }

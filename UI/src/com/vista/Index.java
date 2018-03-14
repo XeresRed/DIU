@@ -7,7 +7,9 @@ package com.vista;
 
 
 import com.controlador.Control_fuentes;
+import com.controlador.LogicaUsuario;
 import com.controlador.busqueda;
+import com.controlador.encriptador;
 import com.google.api.services.drive.model.File;
 import com.vista.Drive.DriveFiles;
 import com.vista.Drive.DriveTools;
@@ -31,6 +33,9 @@ import javax.swing.UIManager;
 public class Index extends javax.swing.JFrame {
     com.vista.Drive.DriveFiles Drivefiles;
     com.vista.Drive.DriveTools Drivetools;
+    com.vista.agenda.agendarTools AgendaTools;
+    com.vista.agenda.agendarCalendar AgendaCalendar;
+    
     com.vista.menu.MenuTools MenuTool;
     com.vista.menu.MenuItems MenuItem;
     com.controlador.busqueda Oauth;
@@ -106,7 +111,7 @@ public class Index extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(254, 244, 232));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -118,7 +123,6 @@ public class Index extends javax.swing.JFrame {
         jLabel2.setToolTipText("");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 210, 120));
 
-        NombreUser.setBackground(new java.awt.Color(254, 244, 232));
         NombreUser.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         NombreUser.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         NombreUser.setText("Ingrese su nombre de usuario...");
@@ -137,7 +141,6 @@ public class Index extends javax.swing.JFrame {
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 120, 10));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 240, 10));
 
-        contraseñaUser.setBackground(new java.awt.Color(254, 244, 232));
         contraseñaUser.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         contraseñaUser.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         contraseñaUser.setText("jPasswordField1");
@@ -192,7 +195,7 @@ public class Index extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 290, 474));
 
-        jPanel2.setBackground(new java.awt.Color(254, 244, 232));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -316,15 +319,27 @@ public class Index extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        panelAbierto = "menu";
-        jLabel11.setVisible(true);
-        this.set_panel_home(false);
+        com.controlador.LogicaUsuario userDao = new LogicaUsuario();
+        try{
+            com.modelo.Usuarios user = userDao.BuscarUsuario(NombreUser.getText());
+            com.controlador.encriptador md5 = new encriptador();
+            if(user.getContraseña().equals(md5.getMD5(contraseñaUser.getText()))){
+                panelAbierto = "menu";
+                jLabel11.setVisible(true);
+                this.set_panel_home(false);
+
+                MenuTool = new MenuTools(this,user);
+                getContentPane().add(MenuTool, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 290, 474));
+
+                MenuItem = new MenuItems(this,user);
+                getContentPane().add(MenuItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474));
+            }else{
+               JOptionPane.showMessageDialog(rootPane,  "La contraseña es incorrecta", "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }catch(Exception ex){
+             JOptionPane.showMessageDialog(rootPane,  "No existe un usuario con ese correo electronico", "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
         
-        MenuTool = new MenuTools(this);
-        getContentPane().add(MenuTool, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 290, 474));
-        
-        MenuItem = new MenuItems(this);
-        getContentPane().add(MenuItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474));
     }//GEN-LAST:event_jButton1ActionPerformed
     
     public void instancia_drive_tools(com.vista.Drive.DriveTools to){
@@ -333,6 +348,14 @@ public class Index extends javax.swing.JFrame {
     
     public void instancia_drive_files(com.vista.Drive.DriveFiles fi){
         Drivefiles = fi;
+    }
+    
+    public void instancia_agenda_tools(com.vista.agenda.agendarTools to){
+        AgendaTools = to;
+    }
+    
+    public void instancia_agenda_calendar(com.vista.agenda.agendarCalendar ca){
+        AgendaCalendar = ca;
     }
     
     public void instancia_drive_aut(com.controlador.busqueda aut){
@@ -356,6 +379,11 @@ public class Index extends javax.swing.JFrame {
     private void destruye_panel_drive(){
         this.remove(Drivefiles);
         this.remove(Drivetools);
+    }
+    
+    private void destruye_panel_agenda(){
+        this.remove(AgendaTools);
+        this.remove(AgendaCalendar);
     }
     
     private void destruye_panel_menu(){
@@ -387,6 +415,10 @@ public class Index extends javax.swing.JFrame {
                 destruye_panel_drive();
                 this.set_panel_menu(true);
                 break;
+            case "organizador":
+                destruye_panel_agenda();
+                this.set_panel_menu(true);
+                break;
         }
     }//GEN-LAST:event_jLabel11Volver
     
@@ -399,6 +431,10 @@ public class Index extends javax.swing.JFrame {
             Logger.getLogger(Index.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    
+    public void activarOpcionesAgenda(boolean accion){
+        AgendaTools.activaOpciones(accion);
     }
     
     public void activaPanelHome(){

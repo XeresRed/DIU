@@ -6,25 +6,18 @@
 package com.vista.Drive;
 
 import com.controlador.busqueda;
+import com.controlador.hiloEspera;
 import com.google.api.services.drive.model.File;
-import com.modelo.conversiones.extensionesDocumento;
-import com.modelo.conversiones.extensionesHojasCalculo;
-import com.modelo.conversiones.extensionesImagenes;
-import com.modelo.conversiones.extensionesPresetaciones;
+import com.modelo.extensionesDocumento;
+import com.modelo.extensionesHojasCalculo;
+import com.modelo.extensionesImagenes;
+import com.modelo.extensionesPresetaciones;
 import com.vista.Drive.archivos.Conversion;
 import com.vista.Index;
-import com.vista.espera.Espera;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.Charset;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
 /**
@@ -34,12 +27,13 @@ import javax.swing.JFileChooser;
 public class DriveTools extends javax.swing.JPanel {
     Index vista;
     List<File> arcivos;
-    com.modelo.conversiones.extensionesDocumento Documeto;
-    com.modelo.conversiones.extensionesHojasCalculo Calculo;
-    com.modelo.conversiones.extensionesImagenes Imagen;
-    com.modelo.conversiones.extensionesPresetaciones Presentacion;
+    com.modelo.extensionesDocumento Documeto;
+    com.modelo.extensionesHojasCalculo Calculo;
+    com.modelo.extensionesImagenes Imagen;
+    com.modelo.extensionesPresetaciones Presentacion;
     /**
      * Creates new form DriveTools
+     * @param view
      */
     public DriveTools(Index view) {
         vista = view;
@@ -105,15 +99,16 @@ public class DriveTools extends javax.swing.JPanel {
       // Demonstrate "Save" dialog:
       int rVal = saveDialog.showSaveDialog(vista);
       if (rVal == JFileChooser.APPROVE_OPTION) {
-          
+        
+        
         String filename = saveDialog.getSelectedFile().getName();
         String dir= saveDialog.getCurrentDirectory().toString();
         System.out.println("archivo ruta mas nombre: " + dir +"\\"+filename);
         vista.paso_informacion_drive();
         com.controlador.busqueda b = new busqueda();
         com.vista.Drive.archivos.Conversion c;
-        //com.vista.espera.Espera a = new Espera(vista, true);
-        //a.setVisible(true);
+        com.controlador.hiloEspera espera = new hiloEspera(vista);
+        espera.start();
         for (int i = 0; i < arcivos.size(); i++) {
             
             try {
@@ -163,6 +158,7 @@ public class DriveTools extends javax.swing.JPanel {
                     //a.dispose();
                     
                 }
+                espera.stop();
 	} catch (IOException e) {
                 System.out.println("A ocurrido un error");
 	}

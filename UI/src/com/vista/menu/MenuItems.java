@@ -6,10 +6,13 @@
 package com.vista.menu;
 
 import com.controlador.busqueda;
+import com.modelo.Usuarios;
 import com.vista.Drive.DriveFiles;
 import com.vista.Drive.DriveTools;
 import com.vista.Drive.autenticacion;
 import com.vista.Index;
+import com.vista.agenda.agendarCalendar;
+import com.vista.agenda.agendarTools;
 
 /**
  *
@@ -17,13 +20,17 @@ import com.vista.Index;
  */
 public class MenuItems extends javax.swing.JPanel {
     Index vista;
+    
     com.controlador.busqueda Oauth = new busqueda();
     com.vista.Drive.DriveFiles files;
-    com.vista.Drive.DriveTools tools;
+    com.vista.Drive.DriveTools Dtools;
+    
+    com.vista.agenda.agendarCalendar calendar;
+    com.vista.agenda.agendarTools Atools;
     /**
      * Creates new form MenuItems
      */
-    public MenuItems(Index view) {
+    public MenuItems(Index view,Usuarios user) {
         initComponents();
         vista = view;
     }
@@ -111,9 +118,9 @@ public class MenuItems extends javax.swing.JPanel {
         
         vista.instancia_drive_aut(Oauth);
         
-        tools = new DriveTools(vista);
-        vista.instancia_drive_tools(tools);
-        vista.getContentPane().add(tools, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 290, 474));
+        Dtools = new DriveTools(vista);
+        vista.instancia_drive_tools(Dtools);
+        vista.getContentPane().add(Dtools, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 290, 474));
         
         
         files = new DriveFiles(vista);
@@ -129,6 +136,17 @@ public class MenuItems extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        vista.set_panel_menu(false);
+        vista.set_posicion("organizador");
+        
+        Atools = new agendarTools(vista);
+        vista.instancia_agenda_tools(Atools);
+        vista.getContentPane().add(Atools, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 290, 474));
+        
+        
+        calendar = new agendarCalendar(vista);
+        vista.instancia_agenda_calendar(calendar);
+        vista.getContentPane().add(calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474));
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
