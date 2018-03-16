@@ -5,7 +5,9 @@
  */
 package com.vista.agenda;
 
+import com.modelo.Usuarios;
 import com.vista.Index;
+import com.vista.agenda.crearEntrada.CrearEntrada;
 import java.awt.Color;
 
 /**
@@ -14,12 +16,14 @@ import java.awt.Color;
  */
 public class agendarTools extends javax.swing.JPanel {
     Index vista;
+    Usuarios userAccedido;
     /**
      * Creates new form agendarTools
      */
-    public agendarTools(Index view) {
+    public agendarTools(Index view, Usuarios user) {
         initComponents();
         vista = view;
+        userAccedido = user;
         accesoR4.setVisible(false);
         accesoR2.setVisible(false);
     }
@@ -72,6 +76,9 @@ public class agendarTools extends javax.swing.JPanel {
         accesoR3.setText("Crear nueva cita");
         accesoR3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         accesoR3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                crearEntrada(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 accesoR3cambio_paso(evt);
             }
@@ -132,6 +139,12 @@ public class agendarTools extends javax.swing.JPanel {
         Color n = new Color(240,240,240);
         accesoR4.setForeground(n);
     }//GEN-LAST:event_accesoR4MouseExited
+
+    private void crearEntrada(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearEntrada
+        // TODO add your handling code here:
+        com.vista.agenda.crearEntrada.CrearEntrada s = new CrearEntrada(vista,userAccedido);
+        s.setVisible(true);
+    }//GEN-LAST:event_crearEntrada
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

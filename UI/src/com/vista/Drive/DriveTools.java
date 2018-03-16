@@ -108,7 +108,8 @@ public class DriveTools extends javax.swing.JPanel {
         com.controlador.busqueda b = new busqueda();
         com.vista.Drive.archivos.Conversion c;
         com.controlador.hiloEspera espera = new hiloEspera(vista);
-        espera.start();
+
+        
         for (int i = 0; i < arcivos.size(); i++) {
             
             try {
@@ -136,12 +137,15 @@ public class DriveTools extends javax.swing.JPanel {
                             c = new Conversion(vista,true);
                             c.EstableceTipo("documento");
                             c.setVisible(true);
+                          
                             String[] dataD = delvolverConverD(c.getPosicion());
-                            is = b.descargaNo(arcivos.get(i),dataD[0]);
+                            espera.paso(delvolverConverD(c.getPosicion()), new FileOutputStream(dir+"\\"+filename+dataD[1]), b.descargaNo(arcivos.get(i),dataD[0]));
+                            espera.start();
+                            /*is = b.descargaNo(arcivos.get(i),dataD[0]);
                             salida = new FileOutputStream(dir+"\\"+filename+dataD[1]);
 
                             salida.write(is);
-                            salida.close();
+                            salida.close();*/
                             break;
                         case "application/vnd.google-apps.spreadsheet":
                             c = new Conversion(vista,true);
@@ -156,9 +160,9 @@ public class DriveTools extends javax.swing.JPanel {
                             break;
                     }
                     //a.dispose();
-                    
+                    espera.stop();
                 }
-                espera.stop();
+                
 	} catch (IOException e) {
                 System.out.println("A ocurrido un error");
 	}

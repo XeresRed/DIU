@@ -33,6 +33,14 @@ public class DriveFiles extends javax.swing.JPanel {
         initComponents();
         archivos = new ArrayList<>();
         btnBorraBusqueda.setVisible(false);
+        nameLBL5.setVisible(false);
+    }
+    
+    public void cambiaAespera(boolean actividad){
+        nameLBL5.setVisible(!actividad);   
+        nameLBL3.setVisible(actividad);
+        btnBorraBusqueda.setEnabled(actividad);
+        btnBusqueda.setEnabled(actividad);
     }
     
     public void RecibirArchivos( List<File> a){
@@ -55,7 +63,9 @@ public class DriveFiles extends javax.swing.JPanel {
         BusquedaArchivo = new javax.swing.JTextField();
         btnBorraBusqueda = new javax.swing.JButton();
         btnBusqueda = new javax.swing.JButton();
+        nameLBL5 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         setMinimumSize(new java.awt.Dimension(480, 425));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -117,6 +127,12 @@ public class DriveFiles extends javax.swing.JPanel {
             }
         });
         add(btnBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 55, 110, 40));
+
+        nameLBL5.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
+        nameLBL5.setForeground(new java.awt.Color(255, 102, 102));
+        nameLBL5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nameLBL5.setText("Espere por favor ...");
+        add(nameLBL5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 190, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BusquedaArchivoSeleccion(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_BusquedaArchivoSeleccion
@@ -154,6 +170,7 @@ public class DriveFiles extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nameLBL3;
+    private javax.swing.JLabel nameLBL5;
     // End of variables declaration//GEN-END:variables
 
     private void crearPaneles() {

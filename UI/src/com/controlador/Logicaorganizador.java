@@ -17,14 +17,14 @@ import com.persistencia.exceptions.NonexistentEntityException;
  *
  * @author usuario
  */
-public class Logicaorganizador {
+public class LogicaOrganizador {
     private OrganizadorJpaController organizadorDAO;
 
-    public Logicaorganizador() {
+    public LogicaOrganizador() {
         organizadorDAO = new OrganizadorJpaController();
     }
     
-    public void registrarDatos(Organizador nuevoItem) throws Exception{
+    public void registrarCita(Organizador nuevoItem) throws Exception{
         if(nuevoItem == null){
             throw new Exception("Objeto vacio");
         }
@@ -48,15 +48,15 @@ public class Logicaorganizador {
         organizadorDAO.create(nuevoItem);
     }
     
-    public List<Organizador> consultarDatos(){
+    public List<Organizador> consultarCitas(){
         return organizadorDAO.findOrganizadorEntities();
     }
     
-    public Organizador leerDatos(int id){
+    public Organizador leerCita(int id){
         return organizadorDAO.findOrganizador(id);
     }
     
-    public void modificarDatos(Organizador id){
+    public void modificarCita(Organizador id){
          try {
             organizadorDAO.edit(id);
         } catch (NonexistentEntityException ex) {
@@ -66,7 +66,7 @@ public class Logicaorganizador {
         }
     }
     
-    public void eliminarOrganizador(int id){
+    public void eliminarCita(int id){
         try {
             organizadorDAO.destroy(id);
         } catch (NonexistentEntityException ex) {

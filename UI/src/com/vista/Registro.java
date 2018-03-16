@@ -9,6 +9,7 @@ import com.controlador.Control_fuentes;
 import com.controlador.LogicaUsuario;
 import com.controlador.encriptador;
 import com.modelo.Usuarios;
+import com.vista.espera.RespuestaModal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -71,7 +72,8 @@ public class Registro extends javax.swing.JPanel {
         lblNombre.setToolTipText("");
         lblNombre.setBorder(null);
         lblNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblNombre.setSelectedTextColor(new java.awt.Color(0, 102, 255));
+        lblNombre.setSelectedTextColor(new java.awt.Color(0, 51, 255));
+        lblNombre.setSelectionColor(new java.awt.Color(81, 173, 207));
         lblNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 lblNombreSeleccion(evt);
@@ -86,7 +88,8 @@ public class Registro extends javax.swing.JPanel {
         lblCorreo.setToolTipText("");
         lblCorreo.setBorder(null);
         lblCorreo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblCorreo.setSelectedTextColor(new java.awt.Color(0, 102, 255));
+        lblCorreo.setSelectedTextColor(new java.awt.Color(0, 51, 255));
+        lblCorreo.setSelectionColor(new java.awt.Color(81, 173, 207));
         lblCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 lblCorreoSeleccion(evt);
@@ -118,7 +121,8 @@ public class Registro extends javax.swing.JPanel {
         lblP1.setText("jPasswordField1");
         lblP1.setBorder(null);
         lblP1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblP1.setSelectedTextColor(new java.awt.Color(0, 102, 255));
+        lblP1.setSelectedTextColor(new java.awt.Color(0, 51, 255));
+        lblP1.setSelectionColor(new java.awt.Color(81, 173, 207));
         lblP1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 lblP1seleccionP(evt);
@@ -132,7 +136,8 @@ public class Registro extends javax.swing.JPanel {
         lblP2.setText("jPasswordField1");
         lblP2.setBorder(null);
         lblP2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblP2.setSelectedTextColor(new java.awt.Color(0, 102, 255));
+        lblP2.setSelectedTextColor(new java.awt.Color(0, 51, 255));
+        lblP2.setSelectionColor(new java.awt.Color(81, 173, 207));
         lblP2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 lblP2seleccionP(evt);
@@ -188,6 +193,7 @@ public class Registro extends javax.swing.JPanel {
         com.controlador.encriptador md5 = new encriptador();
         user.setCorreo(lblCorreo.getText());
         user.setNombre(lblNombre.getText());
+        RespuestaModal response = new RespuestaModal(vista, true);
         if (lblP1.getText().equals(lblP2.getText()) && lblP1.getText().length() >= 5) {
             
             user.setContraseña(md5.getMD5(lblP1.getText()));
@@ -195,11 +201,16 @@ public class Registro extends javax.swing.JPanel {
             try {
                 userDao.registrarUsuario(user);
                 nameLBL5.setVisible(true);
+                String texto = "<html><body>Se ha registrado<br>exitosamente.<br></body></html>";
+                response.cargaDatos("¡Exito!", texto, "exito");
+                response.setVisible(true);
             } catch (Exception ex) {
                 Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
-            JOptionPane.showMessageDialog(null,"atención", "Las contraseñas no coinciden o no supera 5 caracteres", JOptionPane.DEFAULT_OPTION);
+            String texto = "<html><body>Las contraseñas no son<br>iguales o la contraseña<br>no supera 5 caracteres.</body></html>";
+            response.cargaDatos("¡Upps!", texto, "error");
+                response.setVisible(true);
         }
         
         

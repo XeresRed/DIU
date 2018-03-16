@@ -72,7 +72,7 @@ public class autenticacion extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(0, 0, 280, 480));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(254, 244, 232));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -99,7 +99,8 @@ public class autenticacion extends javax.swing.JFrame {
         textCodigo.setToolTipText("");
         textCodigo.setBorder(null);
         textCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        textCodigo.setSelectedTextColor(new java.awt.Color(0, 102, 255));
+        textCodigo.setSelectedTextColor(new java.awt.Color(0, 51, 255));
+        textCodigo.setSelectionColor(new java.awt.Color(81, 173, 207));
         textCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 textCodigoSeleccion(evt);
@@ -130,7 +131,8 @@ public class autenticacion extends javax.swing.JFrame {
         texturl.setToolTipText("");
         texturl.setBorder(null);
         texturl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        texturl.setSelectedTextColor(new java.awt.Color(0, 102, 255));
+        texturl.setSelectedTextColor(new java.awt.Color(0, 51, 255));
+        texturl.setSelectionColor(new java.awt.Color(81, 173, 207));
         texturl.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 texturlSeleccion(evt);

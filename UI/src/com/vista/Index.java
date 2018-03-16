@@ -14,6 +14,7 @@ import com.google.api.services.drive.model.File;
 import com.vista.Drive.DriveFiles;
 import com.vista.Drive.DriveTools;
 import com.vista.Drive.autenticacion;
+import com.vista.espera.RespuestaModal;
 import com.vista.menu.MenuItems;
 import com.vista.menu.MenuTools;
 import java.awt.Color;
@@ -25,6 +26,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
+import static javax.swing.UIManager.setLookAndFeel;
 
 /**
  *
@@ -123,13 +125,14 @@ public class Index extends javax.swing.JFrame {
         jLabel2.setToolTipText("");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 210, 120));
 
-        NombreUser.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
+        NombreUser.setFont(new java.awt.Font("Yu Gothic UI", 0, 16)); // NOI18N
         NombreUser.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         NombreUser.setText("Ingrese su nombre de usuario...");
         NombreUser.setToolTipText("");
         NombreUser.setBorder(null);
         NombreUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        NombreUser.setSelectedTextColor(new java.awt.Color(0, 102, 255));
+        NombreUser.setSelectedTextColor(new java.awt.Color(0, 51, 255));
+        NombreUser.setSelectionColor(new java.awt.Color(81, 173, 207));
         NombreUser.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 Seleccion(evt);
@@ -141,12 +144,13 @@ public class Index extends javax.swing.JFrame {
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 120, 10));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 240, 10));
 
-        contraseñaUser.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
+        contraseñaUser.setFont(new java.awt.Font("Yu Gothic UI", 0, 16)); // NOI18N
         contraseñaUser.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         contraseñaUser.setText("jPasswordField1");
         contraseñaUser.setBorder(null);
         contraseñaUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        contraseñaUser.setSelectedTextColor(new java.awt.Color(0, 102, 255));
+        contraseñaUser.setSelectedTextColor(new java.awt.Color(0, 51, 255));
+        contraseñaUser.setSelectionColor(new java.awt.Color(81, 173, 207));
         contraseñaUser.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 seleccionP(evt);
@@ -320,9 +324,11 @@ public class Index extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         com.controlador.LogicaUsuario userDao = new LogicaUsuario();
+        RespuestaModal response = new RespuestaModal(this, true);
         try{
             com.modelo.Usuarios user = userDao.BuscarUsuario(NombreUser.getText());
             com.controlador.encriptador md5 = new encriptador();
+            
             if(user.getContraseña().equals(md5.getMD5(contraseñaUser.getText()))){
                 panelAbierto = "menu";
                 jLabel11.setVisible(true);
@@ -334,10 +340,14 @@ public class Index extends javax.swing.JFrame {
                 MenuItem = new MenuItems(this,user);
                 getContentPane().add(MenuItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474));
             }else{
-               JOptionPane.showMessageDialog(rootPane,  "La contraseña es incorrecta", "Error", JOptionPane.INFORMATION_MESSAGE);
+                String texto = "<html><body>La contraseña es<br>incorrecta.<br></body></html>";
+               response.cargaDatos("¡Upps!", texto, "error");
+                response.setVisible(true);
             }
         }catch(Exception ex){
-             JOptionPane.showMessageDialog(rootPane,  "No existe un usuario con ese correo electronico", "Error", JOptionPane.INFORMATION_MESSAGE);
+            String texto = "<html><body>No existe un usuario con<br>ese correo electronico.<br></body></html>";
+            response.cargaDatos("¡Upps!", texto, "error");
+            response.setVisible(true);
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -452,8 +462,8 @@ public class Index extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            UIManager.setLookAndFeel(//"com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+        try{
+        UIManager.setLookAndFeel(//"com.sun.java.swing.plaf.motif.MotifLookAndFeel");
                                     //"javax.swing.plaf.metal.MetalLookAndFeel");
                                     "com.sun.java.swing.plaf.windows.WindowsLookAndFeel"); //!!! Funciona solo para windows !!!
                                     //"com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");//!!! Funciona solo para windows !!!

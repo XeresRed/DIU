@@ -5,17 +5,15 @@
  */
 package com.vista.agenda;
 
-import com.controlador.controlPaneles;
 import com.controlador.controlPanelesDias;
+import com.modelo.Usuarios;
 import com.vista.Index;
 import com.vista.agenda.panelesDias.panelDias;
 import java.awt.Color;
-import java.util.AbstractList;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.Calendar;
 import java.util.List;
-import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -23,6 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class agendarCalendar extends javax.swing.JPanel {
     Color diaActual = new Color(255,95,95);
+    Usuarios userAccedido;
     int numeroDiasMes = 0;
     int year = 0;
     controlPanelesDias com;
@@ -33,9 +32,10 @@ public class agendarCalendar extends javax.swing.JPanel {
      * Creates new form agendarCalendar
      * @param view
      */
-    public agendarCalendar(Index view) {
+    public agendarCalendar(Index view, Usuarios user) {
         initComponents();
         vista = view;
+        userAccedido = user;
         Calendar fecha = Calendar.getInstance();
         year = fecha.get(Calendar.YEAR);
         pintaLabelSemana(strDays[fecha.get(Calendar.DAY_OF_WEEK) - 1]);

@@ -20,7 +20,7 @@ import com.vista.agenda.agendarTools;
  */
 public class MenuItems extends javax.swing.JPanel {
     Index vista;
-    
+    Usuarios userAccedido;
     com.controlador.busqueda Oauth = new busqueda();
     com.vista.Drive.DriveFiles files;
     com.vista.Drive.DriveTools Dtools;
@@ -33,6 +33,7 @@ public class MenuItems extends javax.swing.JPanel {
     public MenuItems(Index view,Usuarios user) {
         initComponents();
         vista = view;
+        userAccedido = user;
     }
 
     /**
@@ -139,12 +140,12 @@ public class MenuItems extends javax.swing.JPanel {
         vista.set_panel_menu(false);
         vista.set_posicion("organizador");
         
-        Atools = new agendarTools(vista);
+        Atools = new agendarTools(vista,userAccedido);
         vista.instancia_agenda_tools(Atools);
         vista.getContentPane().add(Atools, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 290, 474));
         
         
-        calendar = new agendarCalendar(vista);
+        calendar = new agendarCalendar(vista,userAccedido);
         vista.instancia_agenda_calendar(calendar);
         vista.getContentPane().add(calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474));
     }//GEN-LAST:event_jButton3ActionPerformed
