@@ -34,9 +34,9 @@ La aplicacion de escritorio esta diseñada en java 1.8u161, con una arquitectura
 
 Estas son las librerias faltantes para el correcto funcionamiento del programa.
 
-[Google drive api](https://drive.google.com/open?id=1oy1FdwZgY0wbl4kh9gQdqOB66jfqK0R7).
-[PostgreSQL JDBC](https://drive.google.com/open?id=1tzHFVcFjFAzg2yRumRhsjS9dUk86kjY0).
-[JDateChooser](https://drive.google.com/open?id=1xxIL1mUhIyU4NmyPTN41tSg9Qjs3YbgD).
+1. [Google drive api](https://drive.google.com/open?id=1oy1FdwZgY0wbl4kh9gQdqOB66jfqK0R7).
+2. [PostgreSQL JDBC](https://drive.google.com/open?id=1tzHFVcFjFAzg2yRumRhsjS9dUk86kjY0).
+3. [JDateChooser](https://drive.google.com/open?id=1xxIL1mUhIyU4NmyPTN41tSg9Qjs3YbgD).
 
 ## Comando de ejecución en windows
 
