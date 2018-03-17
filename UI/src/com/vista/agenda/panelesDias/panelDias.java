@@ -5,20 +5,40 @@
  */
 package com.vista.agenda.panelesDias;
 
+import com.controlador.LogicaOrganizador;
+import com.modelo.Organizador;
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Juan Camilo
  */
 public class panelDias extends javax.swing.JPanel {
-
+    List<Integer> idOrganizador;
     /**
      * Creates new form panelDias
      */
     public panelDias(String dia) {
         initComponents();
         lblDia.setText(dia);
+        idOrganizador = new ArrayList<>();
     }
 
+    public void setCitaId(int id){
+        idOrganizador.add(id);
+    }
+    
+    public List<Organizador> getCita(){
+        LogicaOrganizador log = new LogicaOrganizador();
+        List<Organizador> result = new ArrayList<>();
+        for (int i = 0; i < idOrganizador.size(); i++) {
+            result.add(log.leerCita(idOrganizador.get(i)));
+        }
+        
+        return result;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,6 +50,7 @@ public class panelDias extends javax.swing.JPanel {
 
         lblDia = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

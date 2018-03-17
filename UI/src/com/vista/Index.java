@@ -11,6 +11,7 @@ import com.controlador.LogicaUsuario;
 import com.controlador.busqueda;
 import com.controlador.encriptador;
 import com.google.api.services.drive.model.File;
+import com.modelo.Organizador;
 import com.vista.Drive.DriveFiles;
 import com.vista.Drive.DriveTools;
 import com.vista.Drive.autenticacion;
@@ -35,12 +36,14 @@ import static javax.swing.UIManager.setLookAndFeel;
 public class Index extends javax.swing.JFrame {
     com.vista.Drive.DriveFiles Drivefiles;
     com.vista.Drive.DriveTools Drivetools;
+    
     com.vista.agenda.agendarTools AgendaTools;
     com.vista.agenda.agendarCalendar AgendaCalendar;
     
     com.vista.menu.MenuTools MenuTool;
     com.vista.menu.MenuItems MenuItem;
     com.controlador.busqueda Oauth;
+    
     Registro n;
     String panelAbierto = "";
 
@@ -410,6 +413,11 @@ public class Index extends javax.swing.JFrame {
         }
     }
     
+    public void paso_informacion_agenda(){
+        List<Organizador> datos = AgendaCalendar.llama_archivos_seleccionados_organizador();
+        AgendaTools.recibir_informacion(datos);
+    }
+    
     private void jLabel11Volver(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11Volver
         // TODO add your handling code here:
         switch(panelAbierto){
@@ -445,6 +453,14 @@ public class Index extends javax.swing.JFrame {
     
     public void activarOpcionesAgenda(boolean accion){
         AgendaTools.activaOpciones(accion);
+    }
+    
+    public void actualizaAgenda(){
+        AgendaCalendar.Actualizar();
+    }
+    
+    public void desactualizaAgenda(){
+        AgendaCalendar.desActualizar();
     }
     
     public void activaPanelHome(){

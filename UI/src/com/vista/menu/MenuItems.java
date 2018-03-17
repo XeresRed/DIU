@@ -48,8 +48,8 @@ public class MenuItems extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -64,7 +64,7 @@ public class MenuItems extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 120, 100));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 120, 100));
 
         jButton2.setBackground(new java.awt.Color(4, 222, 173));
         jButton2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
@@ -77,7 +77,7 @@ public class MenuItems extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 120, 100));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 120, 100));
 
         jButton3.setBackground(new java.awt.Color(4, 222, 173));
         jButton3.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
@@ -91,19 +91,6 @@ public class MenuItems extends javax.swing.JPanel {
             }
         });
         add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 120, 100));
-
-        jButton4.setBackground(new java.awt.Color(4, 222, 173));
-        jButton4.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/cartera.png"))); // NOI18N
-        jButton4.setBorder(null);
-        jButton4.setBorderPainted(false);
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 120, 100));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -150,16 +137,11 @@ public class MenuItems extends javax.swing.JPanel {
         vista.getContentPane().add(calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474));
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     // End of variables declaration//GEN-END:variables
 }

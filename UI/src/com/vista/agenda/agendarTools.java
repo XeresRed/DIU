@@ -5,10 +5,13 @@
  */
 package com.vista.agenda;
 
+import com.modelo.Organizador;
 import com.modelo.Usuarios;
 import com.vista.Index;
 import com.vista.agenda.crearEntrada.CrearEntrada;
+import com.vista.espera.DialogoConfirmacion;
 import java.awt.Color;
+import java.util.List;
 
 /**
  *
@@ -17,6 +20,7 @@ import java.awt.Color;
 public class agendarTools extends javax.swing.JPanel {
     Index vista;
     Usuarios userAccedido;
+    List<Organizador> orga;
     /**
      * Creates new form agendarTools
      */
@@ -31,6 +35,10 @@ public class agendarTools extends javax.swing.JPanel {
     public void activaOpciones(boolean accion){
         accesoR4.setVisible(accion);
         accesoR2.setVisible(accion);
+    }
+    
+    public void recibir_informacion(List<Organizador> datos){
+        orga = datos;
     }
     
     /**
@@ -61,6 +69,9 @@ public class agendarTools extends javax.swing.JPanel {
         accesoR2.setText("Borrar cita");
         accesoR2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         accesoR2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                accesoR2MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 accesoR2cambio_paso(evt);
             }
@@ -94,6 +105,9 @@ public class agendarTools extends javax.swing.JPanel {
         accesoR4.setText("Consultar cita");
         accesoR4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         accesoR4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                accesoR4MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 accesoR4MouseEntered(evt);
             }
@@ -145,6 +159,22 @@ public class agendarTools extends javax.swing.JPanel {
         com.vista.agenda.crearEntrada.CrearEntrada s = new CrearEntrada(vista,userAccedido);
         s.setVisible(true);
     }//GEN-LAST:event_crearEntrada
+
+    private void accesoR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accesoR4MouseClicked
+        // TODO add your handling code here:
+        vista.paso_informacion_agenda();
+        CrearEntrada Actualizar = new CrearEntrada(vista, userAccedido, orga.get(0).getTitulo(), orga.get(0).getDescripcion(), orga.get(0).getFecha(), orga.get(0).getTag(),orga.get(0).getIdorganizador());
+        Actualizar.setVisible(true);
+    }//GEN-LAST:event_accesoR4MouseClicked
+
+    private void accesoR2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accesoR2MouseClicked
+        // TODO add your handling code here:
+        vista.paso_informacion_agenda();
+        com.vista.espera.DialogoConfirmacion a = new DialogoConfirmacion(vista, true);
+        a.cargaDatos(vista, userAccedido, "Realmente desea eliminar la entrada " + orga.get(0).getTitulo(), orga.get(0).getIdorganizador());
+        a.setVisible(true);
+        
+    }//GEN-LAST:event_accesoR2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

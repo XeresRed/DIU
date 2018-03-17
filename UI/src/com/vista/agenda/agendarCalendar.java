@@ -5,13 +5,18 @@
  */
 package com.vista.agenda;
 
+import com.controlador.LogicaOrganizador;
 import com.controlador.controlPanelesDias;
+import com.google.api.services.drive.model.File;
+import com.modelo.Organizador;
 import com.modelo.Usuarios;
 import com.vista.Index;
 import com.vista.agenda.panelesDias.panelDias;
+import com.vista.espera.RespuestaModal;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -25,9 +30,11 @@ public class agendarCalendar extends javax.swing.JPanel {
     int numeroDiasMes = 0;
     int year = 0;
     controlPanelesDias com;
+    LogicaOrganizador logicaDAO = new LogicaOrganizador();
     Index vista;
     String[] strDays = new String[]{"Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"};
     public List<com.vista.agenda.panelesDias.panelDias> listaPanelesDias = new ArrayList<panelDias>();
+    Calendar fecha;
     /**
      * Creates new form agendarCalendar
      * @param view
@@ -36,7 +43,7 @@ public class agendarCalendar extends javax.swing.JPanel {
         initComponents();
         vista = view;
         userAccedido = user;
-        Calendar fecha = Calendar.getInstance();
+        fecha = Calendar.getInstance();
         year = fecha.get(Calendar.YEAR);
         pintaLabelSemana(strDays[fecha.get(Calendar.DAY_OF_WEEK) - 1]);
         calcularDiasMes(fecha.get(Calendar.MONTH) + 1);
@@ -54,9 +61,9 @@ public class agendarCalendar extends javax.swing.JPanel {
             }
             String numDia = (i + 1) + "";
             com.vista.agenda.panelesDias.panelDias dia = new panelDias(numDia);
-            dia.setBackground(new Color(240,240,240));
+   
             listaPanelesDias.add(dia);
-            
+            dia.setName("panel dia: " + numDia);
             dia.setVisible(true);
             dia.addMouseListener(com);
             panelCalendario.add(dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, wid, heig));
@@ -64,7 +71,79 @@ public class agendarCalendar extends javax.swing.JPanel {
             contador++;
 
         }
+        
+        Actualizar();
     }
+    
+    public Index obtenerInd(){
+        return vista;
+    }
+    
+    public Usuarios user(){
+        return userAccedido;
+    }
+    
+    public List<Organizador> llama_archivos_seleccionados_organizador(){
+        return com.DevolverSeleccion();
+    }
+    
+    public void vistaPrevia(String titulo, String Des){
+        com.vista.espera.RespuestaModal r = new RespuestaModal(vista, true);
+        String texto = "<html><body>No existe un usuario con<br>ese correo electronico.<br></body></html>";
+        r.cargaDatos(titulo, Des, "exito");
+        r.setVisible(true);
+    }
+    
+    public void Actualizar(){
+        List<Organizador> listaOrg = logicaDAO.consultarCitas();
+        
+        for (int i = 0; i < listaOrg.size(); i++) {
+            Calendar tiempoLis = toCalendar(listaOrg.get(i).getFecha());
+            if((tiempoLis.get(Calendar.MONTH) + 1) == (fecha.get(Calendar.MONTH) + 1) && listaOrg.get(i).getUsuariosCorreo().getCorreo().equals(userAccedido.getCorreo())){
+                switch(listaOrg.get(i).getTag()){
+                    case "Urgente":
+                        listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setBackground(new Color(220,47,47));
+                        listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setCitaId(listaOrg.get(i).getIdorganizador());
+                        //panelCalendario.getComponent(tiempoLis.get(Calendar.DAY_OF_MONTH)+6).setBackground(new Color(220,47,47));
+                        break;
+                    case "Importante":
+                        listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setBackground(new Color(255,137,93));
+                        listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setCitaId(listaOrg.get(i).getIdorganizador());
+                        //panelCalendario.getComponent(tiempoLis.get(Calendar.DAY_OF_MONTH)+6).setBackground(new Color(255,137,93));
+                        break;
+                    case "Normal":
+                        listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setBackground(new Color(254,193,0));
+                        listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setCitaId(listaOrg.get(i).getIdorganizador());
+                        //panelCalendario.getComponent(tiempoLis.get(Calendar.DAY_OF_MONTH)+6).setBackground(new Color(254,193,0));
+                        break;
+                    case "Baja":
+                        listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setBackground(new Color(72,186,149));
+                        listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setCitaId(listaOrg.get(i).getIdorganizador());
+                        //panelCalendario.getComponent(tiempoLis.get(Calendar.DAY_OF_MONTH)+6).setBackground(new Color(72,186,149));
+                        break;
+                }
+            }
+        }
+        
+    }
+    
+    public void desActualizar(){
+        List<Organizador> listaOrg = logicaDAO.consultarCitas();
+        
+        for (int i = 0; i < listaOrg.size(); i++) {
+            Calendar tiempoLis = toCalendar(listaOrg.get(i).getFecha());
+            if((tiempoLis.get(Calendar.MONTH) + 1) == (fecha.get(Calendar.MONTH) + 1) && listaOrg.get(i).getUsuariosCorreo().getCorreo().equals(userAccedido.getCorreo())){
+                listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setBackground(new Color(255,255,255));
+            }
+        }
+        
+    }
+    
+    public  Calendar toCalendar(Date date){ 
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal;
+      }
     
     public void ActivarOpcionesDias(boolean accion){
         vista.activarOpcionesAgenda(accion);
@@ -110,6 +189,7 @@ public class agendarCalendar extends javax.swing.JPanel {
         lblViernes = new javax.swing.JLabel();
         lblSabado = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

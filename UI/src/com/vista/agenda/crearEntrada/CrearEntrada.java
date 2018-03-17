@@ -11,6 +11,7 @@ import com.modelo.Organizador;
 import com.modelo.Usuarios;
 import com.vista.Index;
 import com.vista.espera.RespuestaModal;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,8 +30,10 @@ public class CrearEntrada extends javax.swing.JFrame {
     private String titulo;
     private String descripcion;
     private Date fecha;
+    private int idO;
     private String tag;
     private int id;
+    private String[] seleccion = {"Urgente","Importante","Normal","Baja"};
     LogicaOrganizador organizadorDAO = new LogicaOrganizador();
     /**
      * Creates new form CrearEntrada
@@ -48,7 +51,35 @@ public class CrearEntrada extends javax.swing.JFrame {
         this.jLabel4.setFont(cf.MyFont(1, 20f));
         nameLBL8.setVisible(false);
     }
+    
+    public CrearEntrada(Index view,Usuarios user,String Titulo,String Descripcion, Date fecha,String Tag,int id) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        vista = view;
+        userAccedido = user;
+        Control_fuentes cf = new Control_fuentes("texto");
+        this.jLabel4.setFont(cf.MyFont(1, 20f));
+        nameLBL8.setVisible(false);
+        lblTittle.setText(Titulo);
+        lblDesp.setText(Descripcion);
+        idO = id;
+        slcFecha.setSelectedDate(toCalendar(fecha));
+        int sel = 0;
+        for (int i = 0; i < seleccion.length; i++) {
+            if(seleccion[i].equals(Tag)){
+                sel = i;
+            }
+        }
+        comboTag.setSelectedIndex(sel);
+        jButton1.setText("Actualizar");
+    }
 
+    public  Calendar toCalendar(Date date){ 
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal;
+      }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -242,47 +273,76 @@ public class CrearEntrada extends javax.swing.JFrame {
     }//GEN-LAST:event_lblTittleSeleccion
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            // TODO add your handling code here:
+        
+        if(jButton1.getText().equals("Crear")){
+            try {
+                // TODO add your handling code here:
+
+                titulo = lblTittle.getText();
+                descripcion = lblDesp.getText();
+                fecha = slcFecha.getSelectedDate().getTime();
+                tag = (String) comboTag.getSelectedItem();
+
+                List<Organizador> org = organizadorDAO.consultarCitas();
+                if(org.size() > 0){
+                    int i,j;
+                    int max = org.get(0).getIdorganizador();
+                    for(i = 0; i < org.size(); i++)
+                    {
+                        if(max < org.get(i).getIdorganizador())
+                        {
+                            max = org.get(i).getIdorganizador();
+                        }
+                    }
+                    id = max+1;
+                }else{
+                    id = 1;
+                }
+
+                Organizador nuevaCita = new Organizador();
+
+                nuevaCita.setIdorganizador(id);
+                nuevaCita.setTitulo(titulo);
+                nuevaCita.setDescripcion(descripcion);
+                nuevaCita.setFecha(fecha);
+                nuevaCita.setTag(tag);
+                nuevaCita.setUsuariosCorreo(userAccedido);
+
+                organizadorDAO.registrarCita(nuevaCita);
+                RespuestaModal response = new RespuestaModal(this, true);
+                response.cargaDatos("¡Exito!", "Se creo la cita con\n"
+                        + "exito.", "exito");
+                response.setVisible(true);
+                nameLBL8.setVisible(false);
+                vista.actualizaAgenda();
+                this.dispose();
+            } catch (Exception ex) {
+                Logger.getLogger(CrearEntrada.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
             titulo = lblTittle.getText();
             descripcion = lblDesp.getText();
             fecha = slcFecha.getSelectedDate().getTime();
             tag = (String) comboTag.getSelectedItem();
             
-            List<Organizador> org = organizadorDAO.consultarCitas();
-            if(!org.isEmpty()){
-                int i,j;
-                int max = org.get(0).getIdorganizador();
-                for(i = 0; i < org.size(); i++)
-                {
-                    if(max < org.get(i).getIdorganizador())
-                    {
-                        max = org.get(i).getIdorganizador();
-                    }
-                }
-                id = max;
-            }else{
-                id = 1;
-            }
-            
             Organizador nuevaCita = new Organizador();
-            
-            nuevaCita.setIdorganizador(id);
+
+            nuevaCita.setIdorganizador(idO);
             nuevaCita.setTitulo(titulo);
             nuevaCita.setDescripcion(descripcion);
             nuevaCita.setFecha(fecha);
-            nuevaCita.setFecha(fecha);
+            nuevaCita.setTag(tag);
             nuevaCita.setUsuariosCorreo(userAccedido);
-            
-            organizadorDAO.registrarCita(nuevaCita);
+
+            organizadorDAO.modificarCita(nuevaCita);
             RespuestaModal response = new RespuestaModal(this, true);
-            response.cargaDatos("¡Exito!", "Se creo la cita con\n"
-                    + "exito.", titulo);
+                response.cargaDatos("¡Exito!", "Se actualizo la cita con\n"
+                        + "exito.", "exito");
+            response.setVisible(true);
             nameLBL8.setVisible(false);
-        } catch (Exception ex) {
-            Logger.getLogger(CrearEntrada.class.getName()).log(Level.SEVERE, null, ex);
+            vista.actualizaAgenda();
+            this.dispose();
         }
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
