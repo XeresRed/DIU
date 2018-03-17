@@ -1,6 +1,12 @@
-#Proyecto de curso de diseño de interfaces
+# Proyecto de curso de diseño de interfaces
 
-###Descripción
+###### Integrantes
+
+* @OCAMPOESCOBAR
+* @XeresRed
+* @SebasCardenas
+
+## Descripción
 
 Con la productivadad que se requiere día a día y las diversas tareas a las que se enfrentan las personas en sus empleos o
 vida diaria, se hace complicado memorizar una gran cantidad de tareas y ajustar una debida importancia a estas, haciendo
@@ -20,11 +26,11 @@ Con Agendame podrás:
 * Convertir archivos de Google drive a diversos ports como PDF, Wordl, Excel, entre otros.
 
 
-###Especificacion tecnica
+## Especificacion tecnica
 
 La aplicacion de escritorio esta diseñada en java 1.8u161, con una arquitectura MVC y una base de datos PostgreSQL.
 
-###Recursos
+## Recursos
 
 Estas son las librerias faltantes para el correcto funcionamiento del programa.
 
@@ -32,7 +38,7 @@ Estas son las librerias faltantes para el correcto funcionamiento del programa.
 [PostgreSQL JDBC](https://drive.google.com/open?id=1tzHFVcFjFAzg2yRumRhsjS9dUk86kjY0).
 [JDateChooser](https://drive.google.com/open?id=1xxIL1mUhIyU4NmyPTN41tSg9Qjs3YbgD).
 
-###Comando de ejecución en windows
+## Comando de ejecución en windows
 
 Una vez posicionados en la carpeta de la aplicacion:
 
