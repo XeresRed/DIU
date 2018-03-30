@@ -8,12 +8,12 @@
 
 ## Descripción
 
-Con la productivadad que se requiere día a día y las diversas tareas a las que se enfrentan las personas en sus empleos o
+Con la productividad que se requiere día a día y las diversas tareas a las que se enfrentan las personas en sus empleos o
 vida diaria, se hace complicado memorizar una gran cantidad de tareas y ajustar una debida importancia a estas, haciendo
 meritorio el llevar una agenda.
 
 En conclusion a lo anterior, se creo agendame, que es una agenda virtual que en conjunto a la interoperabilidad con Google drive
-hará que tu productivida se aumento separando citas y accediendo rapidamente a tus archivos en la nube.
+hará que tu productividad se aumente, separando citas y accediendo rapidamente a tus archivos en la nube.
 
 Con Agendame podrás:
 
