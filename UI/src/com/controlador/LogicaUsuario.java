@@ -37,6 +37,9 @@ public class LogicaUsuario {
         if(nuevoItem.getContraseña()== null){        
             throw new Exception("El numero de creditos es obligatorio");
         }
+        if(nuevoItem.getTipo()== null){        
+            throw new Exception("El numero de creditos es obligatorio");
+        }
         
 
 

@@ -5,6 +5,7 @@
     <class>com.modelo.Usuarios</class>
     <class>com.modelo.Organizador</class>
     <class>com.modelo.Gasto</class>
+    <class>com.modelo.Table04</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/diu"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

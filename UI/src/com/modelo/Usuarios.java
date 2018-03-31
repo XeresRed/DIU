@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -32,6 +33,11 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usuarios.findByNombre", query = "SELECT u FROM Usuarios u WHERE u.nombre = :nombre")
     , @NamedQuery(name = "Usuarios.findByContrase\u00f1a", query = "SELECT u FROM Usuarios u WHERE u.contrase\u00f1a = :contrase\u00f1a")})
 public class Usuarios implements Serializable {
+
+    @Column(name = "tipo")
+    private Boolean tipo;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuarios")
+    private Table04 table04;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -119,6 +125,22 @@ public class Usuarios implements Serializable {
     @Override
     public String toString() {
         return "com.modelo.Usuarios[ correo=" + correo + " ]";
+    }
+
+    public Boolean getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Boolean tipo) {
+        this.tipo = tipo;
+    }
+
+    public Table04 getTable04() {
+        return table04;
+    }
+
+    public void setTable04(Table04 table04) {
+        this.table04 = table04;
     }
     
 }

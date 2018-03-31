@@ -41,6 +41,7 @@ public class agendarCalendar extends javax.swing.JPanel {
      */
     public agendarCalendar(Index view, Usuarios user) {
         initComponents();
+        this.setName("AgendaCalendario");
         vista = view;
         userAccedido = user;
         fecha = Calendar.getInstance();
@@ -102,22 +103,22 @@ public class agendarCalendar extends javax.swing.JPanel {
             if((tiempoLis.get(Calendar.MONTH) + 1) == (fecha.get(Calendar.MONTH) + 1) && listaOrg.get(i).getUsuariosCorreo().getCorreo().equals(userAccedido.getCorreo())){
                 switch(listaOrg.get(i).getTag()){
                     case "Urgente":
-                        listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setBackground(new Color(220,47,47));
+                        listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setBackground(new Color(244,67,54));
                         listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setCitaId(listaOrg.get(i).getIdorganizador());
                         //panelCalendario.getComponent(tiempoLis.get(Calendar.DAY_OF_MONTH)+6).setBackground(new Color(220,47,47));
                         break;
                     case "Importante":
-                        listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setBackground(new Color(255,137,93));
+                        listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setBackground(new Color(30,136,229));
                         listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setCitaId(listaOrg.get(i).getIdorganizador());
                         //panelCalendario.getComponent(tiempoLis.get(Calendar.DAY_OF_MONTH)+6).setBackground(new Color(255,137,93));
                         break;
                     case "Normal":
-                        listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setBackground(new Color(254,193,0));
+                        listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setBackground(new Color(255,213,79));
                         listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setCitaId(listaOrg.get(i).getIdorganizador());
                         //panelCalendario.getComponent(tiempoLis.get(Calendar.DAY_OF_MONTH)+6).setBackground(new Color(254,193,0));
                         break;
                     case "Baja":
-                        listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setBackground(new Color(72,186,149));
+                        listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setBackground(new Color(198,255,0));
                         listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setCitaId(listaOrg.get(i).getIdorganizador());
                         //panelCalendario.getComponent(tiempoLis.get(Calendar.DAY_OF_MONTH)+6).setBackground(new Color(72,186,149));
                         break;

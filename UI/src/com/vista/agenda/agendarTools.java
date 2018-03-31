@@ -26,6 +26,7 @@ public class agendarTools extends javax.swing.JPanel {
      */
     public agendarTools(Index view, Usuarios user) {
         initComponents();
+        this.setName("AgendaHerramientas");
         vista = view;
         userAccedido = user;
         accesoR4.setVisible(false);
@@ -54,6 +55,15 @@ public class agendarTools extends javax.swing.JPanel {
         accesoR2 = new javax.swing.JLabel();
         accesoR3 = new javax.swing.JLabel();
         accesoR4 = new javax.swing.JLabel();
+        nameLBL4 = new javax.swing.JLabel();
+        Tag1 = new javax.swing.JLabel();
+        Tag2 = new javax.swing.JLabel();
+        Tag3 = new javax.swing.JLabel();
+        Tag4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(53, 92, 125));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -116,6 +126,92 @@ public class agendarTools extends javax.swing.JPanel {
             }
         });
         add(accesoR4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 230, 30));
+
+        nameLBL4.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        nameLBL4.setForeground(new java.awt.Color(255, 255, 255));
+        nameLBL4.setText("Nivel de importancia");
+        add(nameLBL4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
+
+        Tag1.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        Tag1.setForeground(new java.awt.Color(255, 255, 255));
+        Tag1.setText("Bajo");
+        Tag1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Tag1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tag1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Tag1cambio_paso(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Tag1retorna_paso(evt);
+            }
+        });
+        add(Tag1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 180, 20));
+
+        Tag2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        Tag2.setForeground(new java.awt.Color(255, 255, 255));
+        Tag2.setText("Urgente");
+        Tag2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Tag2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Tag2cambio_paso(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Tag2retorna_paso(evt);
+            }
+        });
+        add(Tag2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 180, 20));
+
+        Tag3.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        Tag3.setForeground(new java.awt.Color(255, 255, 255));
+        Tag3.setText("Importante");
+        Tag3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Tag3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tag3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Tag3cambio_paso(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Tag3retorna_paso(evt);
+            }
+        });
+        add(Tag3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 180, 20));
+
+        Tag4.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        Tag4.setForeground(new java.awt.Color(255, 255, 255));
+        Tag4.setText("Normal");
+        Tag4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Tag4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tag4MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Tag4cambio_paso(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Tag4retorna_paso(evt);
+            }
+        });
+        add(Tag4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 180, 20));
+
+        jLabel1.setBackground(new java.awt.Color(198, 255, 0));
+        jLabel1.setOpaque(true);
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 20, 20));
+
+        jLabel2.setBackground(new java.awt.Color(244, 67, 54));
+        jLabel2.setOpaque(true);
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 321, 20, 20));
+
+        jLabel3.setBackground(new java.awt.Color(30, 136, 229));
+        jLabel3.setOpaque(true);
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 20, 20));
+
+        jLabel4.setBackground(new java.awt.Color(255, 213, 79));
+        jLabel4.setOpaque(true);
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 20, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void accesoR2cambio_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accesoR2cambio_paso
@@ -157,6 +253,7 @@ public class agendarTools extends javax.swing.JPanel {
     private void crearEntrada(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearEntrada
         // TODO add your handling code here:
         com.vista.agenda.crearEntrada.CrearEntrada s = new CrearEntrada(vista,userAccedido);
+        s.setActivador(true);
         s.setVisible(true);
     }//GEN-LAST:event_crearEntrada
 
@@ -176,11 +273,69 @@ public class agendarTools extends javax.swing.JPanel {
         
     }//GEN-LAST:event_accesoR2MouseClicked
 
+    private void Tag1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag1MouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_Tag1MouseClicked
+
+    private void Tag1cambio_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag1cambio_paso
+        // TODO add your handling code here:
+        Color n = new Color(95,204,156);
+        Tag1.setForeground(n);
+    }//GEN-LAST:event_Tag1cambio_paso
+
+    private void Tag1retorna_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag1retorna_paso
+        // TODO add your handling code here:
+        Color n = new Color(240,240,240);
+        Tag1.setForeground(n);
+    }//GEN-LAST:event_Tag1retorna_paso
+
+    private void Tag2cambio_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag2cambio_paso
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Tag2cambio_paso
+
+    private void Tag2retorna_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag2retorna_paso
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Tag2retorna_paso
+
+    private void Tag3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Tag3MouseClicked
+
+    private void Tag3cambio_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag3cambio_paso
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Tag3cambio_paso
+
+    private void Tag3retorna_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag3retorna_paso
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Tag3retorna_paso
+
+    private void Tag4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Tag4MouseClicked
+
+    private void Tag4cambio_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag4cambio_paso
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Tag4cambio_paso
+
+    private void Tag4retorna_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag4retorna_paso
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Tag4retorna_paso
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Drive;
+    private javax.swing.JLabel Tag1;
+    private javax.swing.JLabel Tag2;
+    private javax.swing.JLabel Tag3;
+    private javax.swing.JLabel Tag4;
     private javax.swing.JLabel accesoR2;
     private javax.swing.JLabel accesoR3;
     private javax.swing.JLabel accesoR4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel nameLBL4;
     // End of variables declaration//GEN-END:variables
 }

@@ -102,7 +102,7 @@ public class Registro extends javax.swing.JPanel {
         add(nameLBL3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
         nameLBL4.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
-        nameLBL4.setText("Nombre de usuario:");
+        nameLBL4.setText("Nombre del usuario:");
         add(nameLBL4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
         nameLBL5.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N

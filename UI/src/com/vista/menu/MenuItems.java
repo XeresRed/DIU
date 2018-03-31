@@ -32,6 +32,7 @@ public class MenuItems extends javax.swing.JPanel {
      */
     public MenuItems(Index view,Usuarios user) {
         initComponents();
+        this.setName("MenuItems");
         vista = view;
         userAccedido = user;
     }
@@ -102,7 +103,7 @@ public class MenuItems extends javax.swing.JPanel {
         // TODO add your handling code here:
         vista.set_panel_menu(false);
         
-        vista.set_posicion("drive");
+        vista.set_posicion("menu");
         
         vista.instancia_drive_aut(Oauth);
         

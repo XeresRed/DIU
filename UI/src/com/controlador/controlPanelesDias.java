@@ -42,10 +42,10 @@ public class controlPanelesDias implements MouseListener{
     
     @Override
     public void mouseClicked(MouseEvent e) {
-         Color Urgente =  new Color(220,47,47);
-         Color Importante =  new Color(255,137,93);
-         Color Normal =  new Color(254,193,0);
-         Color Baja =  new Color(72,186,149);
+         Color Urgente =  new Color(244,67,54);
+         Color Importante =  new Color(30,136,229);
+         Color Normal =  new Color(255,213,79);
+         Color Baja =  new Color(198,255,0);
             for(int i = 0; i < view.listaPanelesDias.size(); i++){
                 if(e.getSource()  == view.listaPanelesDias.get(i)){
                     if(seleccion.isEmpty()){

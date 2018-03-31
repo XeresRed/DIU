@@ -11,6 +11,7 @@ import com.modelo.Organizador;
 import com.modelo.Usuarios;
 import com.vista.Index;
 import com.vista.espera.RespuestaModal;
+import java.awt.Component;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -35,11 +36,16 @@ public class CrearEntrada extends javax.swing.JFrame {
     private int id;
     private String[] seleccion = {"Urgente","Importante","Normal","Baja"};
     LogicaOrganizador organizadorDAO = new LogicaOrganizador();
+    private boolean activador = false;
     /**
      * Creates new form CrearEntrada
      */
     public CrearEntrada() {
         initComponents();
+    }
+    
+    public void setActivador(boolean a){
+        activador = a;
     }
     
     public CrearEntrada(Index view,Usuarios user) {
@@ -308,13 +314,16 @@ public class CrearEntrada extends javax.swing.JFrame {
                 nuevaCita.setTag(tag);
                 nuevaCita.setUsuariosCorreo(userAccedido);
 
-                organizadorDAO.registrarCita(nuevaCita);
+                //organizadorDAO.registrarCita(nuevaCita);
                 RespuestaModal response = new RespuestaModal(this, true);
-                response.cargaDatos("¡Exito!", "Se creo la cita con\n"
-                        + "exito.", "exito");
+                String texto = "<html><body>Se creo la cita<br>con exito.<br></body></html>";
+                response.cargaDatos("¡Exito!",texto, "exito");
                 response.setVisible(true);
                 nameLBL8.setVisible(false);
-                vista.actualizaAgenda();
+                if(activador){
+                    vista.actualizaAgenda();
+                }
+                
                 this.dispose();
             } catch (Exception ex) {
                 Logger.getLogger(CrearEntrada.class.getName()).log(Level.SEVERE, null, ex);
@@ -344,7 +353,9 @@ public class CrearEntrada extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+   
+    
     /**
      * @param args the command line arguments
      */

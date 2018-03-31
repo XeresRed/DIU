@@ -7,6 +7,7 @@ package com.vista.menu;
 
 import com.modelo.Usuarios;
 import com.vista.Index;
+import com.vista.agenda.crearEntrada.CrearEntrada;
 import java.awt.Color;
 
 /**
@@ -21,6 +22,7 @@ public class MenuTools extends javax.swing.JPanel {
      */
     public MenuTools(Index view,Usuarios user) {
         initComponents();
+        this.setName("MenuHerramientas");
         vista = view;
         usuario = user;
         nombreUsuario.setText(usuario.getNombre());
@@ -129,6 +131,9 @@ public class MenuTools extends javax.swing.JPanel {
         accesoR1.setText("Crear nueva cita");
         accesoR1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         accesoR1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                accesoR1MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 cambio_paso(evt);
             }
@@ -186,6 +191,13 @@ public class MenuTools extends javax.swing.JPanel {
         Color n = new Color(95,204,156);
         accesoR2.setForeground(n);
     }//GEN-LAST:event_accesoR2MouseEntered
+
+    private void accesoR1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accesoR1MouseClicked
+        // TODO add your handling code here:
+        com.vista.agenda.crearEntrada.CrearEntrada s = new CrearEntrada(vista,usuario);
+        s.setActivador(false);
+        s.setVisible(true);
+    }//GEN-LAST:event_accesoR1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

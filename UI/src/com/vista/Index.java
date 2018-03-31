@@ -12,6 +12,7 @@ import com.controlador.busqueda;
 import com.controlador.encriptador;
 import com.google.api.services.drive.model.File;
 import com.modelo.Organizador;
+import com.modelo.Usuarios;
 import com.vista.Drive.DriveFiles;
 import com.vista.Drive.DriveTools;
 import com.vista.Drive.autenticacion;
@@ -44,7 +45,7 @@ public class Index extends javax.swing.JFrame {
     com.vista.menu.MenuItems MenuItem;
     com.controlador.busqueda Oauth;
     
-    Registro n;
+    Registro panelRegistro;
     String panelAbierto = "";
 
     /**
@@ -81,9 +82,9 @@ public class Index extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        panelLogin = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        NombreUser = new javax.swing.JTextField();
+        txtEmailUser = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         contraseñaUser = new javax.swing.JPasswordField();
@@ -92,7 +93,7 @@ public class Index extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JSeparator();
         nameLBL4 = new javax.swing.JLabel();
         nameLBL6 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        panelNoticias = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
@@ -116,36 +117,36 @@ public class Index extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelLogin.setBackground(new java.awt.Color(255, 255, 255));
+        panelLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        panelLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBackground(new java.awt.Color(25, 137, 172));
         jLabel2.setFont(new java.awt.Font("Myanmar Text", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(151, 7, 71));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Organic Tools");
+        jLabel2.setText("Agendame");
         jLabel2.setToolTipText("");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 210, 120));
+        panelLogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 210, 120));
 
-        NombreUser.setFont(new java.awt.Font("Yu Gothic UI", 0, 16)); // NOI18N
-        NombreUser.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        NombreUser.setText("Ingrese su nombre de usuario...");
-        NombreUser.setToolTipText("");
-        NombreUser.setBorder(null);
-        NombreUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        NombreUser.setSelectedTextColor(new java.awt.Color(0, 51, 255));
-        NombreUser.setSelectionColor(new java.awt.Color(81, 173, 207));
-        NombreUser.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtEmailUser.setFont(new java.awt.Font("Yu Gothic UI", 0, 16)); // NOI18N
+        txtEmailUser.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtEmailUser.setText("Ingrese su correo electronico...");
+        txtEmailUser.setToolTipText("");
+        txtEmailUser.setBorder(null);
+        txtEmailUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtEmailUser.setSelectedTextColor(new java.awt.Color(0, 51, 255));
+        txtEmailUser.setSelectionColor(new java.awt.Color(81, 173, 207));
+        txtEmailUser.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 Seleccion(evt);
             }
         });
-        jPanel1.add(NombreUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 240, 30));
+        panelLogin.add(txtEmailUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 240, 30));
 
         jSeparator1.setForeground(new java.awt.Color(230, 28, 93));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 120, 10));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 240, 10));
+        panelLogin.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 120, 10));
+        panelLogin.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 240, 10));
 
         contraseñaUser.setFont(new java.awt.Font("Yu Gothic UI", 0, 16)); // NOI18N
         contraseñaUser.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -159,7 +160,7 @@ public class Index extends javax.swing.JFrame {
                 seleccionP(evt);
             }
         });
-        jPanel1.add(contraseñaUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 250, 30));
+        panelLogin.add(contraseñaUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 250, 30));
 
         jButton1.setBackground(new java.awt.Color(4, 222, 173));
         jButton1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
@@ -173,7 +174,7 @@ public class Index extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 120, 40));
+        panelLogin.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 120, 40));
 
         jLabel8.setBackground(new java.awt.Color(230, 28, 93));
         jLabel8.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -185,75 +186,75 @@ public class Index extends javax.swing.JFrame {
                 LlamarReg(evt);
             }
         });
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, -1, -1));
+        panelLogin.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, -1, -1));
         jLabel8.getAccessibleContext().setAccessibleName("registro");
 
-        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 230, 10));
+        panelLogin.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 230, 10));
 
         nameLBL4.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
-        nameLBL4.setLabelFor(NombreUser);
+        nameLBL4.setLabelFor(txtEmailUser);
         nameLBL4.setText("Contraseña:");
-        jPanel1.add(nameLBL4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
+        panelLogin.add(nameLBL4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
 
         nameLBL6.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
-        nameLBL6.setLabelFor(NombreUser);
-        nameLBL6.setText("Nombre de usuario:");
-        jPanel1.add(nameLBL6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
+        nameLBL6.setLabelFor(txtEmailUser);
+        nameLBL6.setText("Correo Electronico:");
+        panelLogin.add(nameLBL6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 290, 474));
+        getContentPane().add(panelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 290, 474));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelNoticias.setBackground(new java.awt.Color(255, 255, 255));
+        panelNoticias.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        panelNoticias.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/calendar.png"))); // NOI18N
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 130, 130));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 160, 10));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 160, 10));
+        panelNoticias.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 130, 130));
+        panelNoticias.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 160, 10));
+        panelNoticias.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 160, 10));
 
         jLabel5.setText("b");
         jLabel5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 360, 40));
+        panelNoticias.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 360, 40));
 
         Drive.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Drive.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/conducir.png"))); // NOI18N
         Drive.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel2.add(Drive, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 110, 70));
+        panelNoticias.add(Drive, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 110, 70));
 
         jLabel7.setText("a");
         jLabel7.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 360, 40));
+        panelNoticias.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 360, 40));
 
         nameLBL2.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
-        nameLBL2.setLabelFor(NombreUser);
+        nameLBL2.setLabelFor(txtEmailUser);
         nameLBL2.setText("Mantente conectado a");
-        jPanel2.add(nameLBL2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
+        panelNoticias.add(nameLBL2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
         jLabel1.setText("Google drive");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, -1, -1));
+        panelNoticias.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, -1, -1));
 
         jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 10, 200));
+        panelNoticias.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 10, 200));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/enamorado.png"))); // NOI18N
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, 70, 80));
+        panelNoticias.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, 70, 80));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/codificacion.png"))); // NOI18N
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 70, 80));
+        panelNoticias.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 70, 80));
 
         nameLBL1.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
-        nameLBL1.setLabelFor(NombreUser);
+        nameLBL1.setLabelFor(txtEmailUser);
         nameLBL1.setText("Facíl de usar.");
-        jPanel2.add(nameLBL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 200, -1));
+        panelNoticias.add(nameLBL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 200, -1));
 
         nameLBL5.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
-        nameLBL5.setLabelFor(NombreUser);
+        nameLBL5.setLabelFor(txtEmailUser);
         nameLBL5.setText("Sube y descarga archivos.");
-        jPanel2.add(nameLBL5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 200, -1));
+        panelNoticias.add(nameLBL5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 200, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474));
-        jPanel2.getAccessibleContext().setAccessibleName("jpanel2");
+        getContentPane().add(panelNoticias, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474));
+        panelNoticias.getAccessibleContext().setAccessibleName("jpanel2");
 
         jPanel3.setBackground(new java.awt.Color(0, 116, 228));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -270,6 +271,7 @@ public class Index extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("x");
         jLabel4.setToolTipText("");
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel4.setOpaque(true);
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -297,7 +299,7 @@ public class Index extends javax.swing.JFrame {
 
     private void Seleccion(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Seleccion
         // TODO add your handling code here:
-        NombreUser.selectAll();
+        txtEmailUser.selectAll();
     }//GEN-LAST:event_Seleccion
 
     private void seleccionP(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_seleccionP
@@ -315,9 +317,9 @@ public class Index extends javax.swing.JFrame {
         Color ver = new Color(230,28,93);
         Color deat = new Color(64,75,105);
         if(jLabel8.getForeground().equals(ver)){
-            this.jPanel2.setVisible(false);
-            n = new Registro(this);
-            getContentPane().add(n, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474));
+            this.panelNoticias.setVisible(false);
+            panelRegistro = new Registro(this);
+            getContentPane().add(panelRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474));
             jLabel8.setForeground(deat);
             jLabel11.setVisible(true);
             panelAbierto = "registro";
@@ -326,31 +328,60 @@ public class Index extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        com.controlador.LogicaUsuario userDao = new LogicaUsuario();
-        RespuestaModal response = new RespuestaModal(this, true);
-        try{
-            com.modelo.Usuarios user = userDao.BuscarUsuario(NombreUser.getText());
-            com.controlador.encriptador md5 = new encriptador();
-            
-            if(user.getContraseña().equals(md5.getMD5(contraseñaUser.getText()))){
-                panelAbierto = "menu";
-                jLabel11.setVisible(true);
-                this.set_panel_home(false);
+        if(!txtEmailUser.getText().equals("superuser")){
+            com.controlador.LogicaUsuario userDao = new LogicaUsuario();
+            RespuestaModal response = new RespuestaModal(this, true);
+            try{
+                com.modelo.Usuarios user = userDao.BuscarUsuario(txtEmailUser.getText());
+                com.controlador.encriptador md5 = new encriptador();
 
-                MenuTool = new MenuTools(this,user);
-                getContentPane().add(MenuTool, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 290, 474));
+                if(user.getContraseña().equals(md5.getMD5(contraseñaUser.getText()))){
+                    panelAbierto = "menu";
+                    jLabel11.setVisible(true);
+                    if(panelNoticias.isVisible()){
+                        this.set_panel_home(false);
+                    }else{
+                        panelLogin.setVisible(false);
+                        panelRegistro.setVisible(false); 
+                    }
 
-                MenuItem = new MenuItems(this,user);
-                getContentPane().add(MenuItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474));
-            }else{
-                String texto = "<html><body>La contraseña es<br>incorrecta.<br></body></html>";
-               response.cargaDatos("¡Upps!", texto, "error");
+                    MenuTool = new MenuTools(this,user);
+                    getContentPane().add(MenuTool, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 290, 474));
+
+                    MenuItem = new MenuItems(this,user);
+                    getContentPane().add(MenuItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474));
+                }else{
+                    String texto = "<html><body>La contraseña es<br>incorrecta.<br></body></html>";
+                   response.cargaDatos("¡Upps!", texto, "error");
+                    response.setVisible(true);
+                }
+            }catch(Exception ex){
+                System.out.println("error: " + ex.getMessage() + "\nemial: " + txtEmailUser.getText());
+                String texto = "<html><body>No existe un usuario con<br>ese correo electronico.<br></body></html>";
+                response.cargaDatos("¡Upps!", texto, "error");
                 response.setVisible(true);
             }
-        }catch(Exception ex){
-            String texto = "<html><body>No existe un usuario con<br>ese correo electronico.<br></body></html>";
-            response.cargaDatos("¡Upps!", texto, "error");
-            response.setVisible(true);
+        }else{
+            panelAbierto = "menu";
+            jLabel11.setVisible(true);
+            if(panelNoticias.isVisible()){
+                this.set_panel_home(false);
+            }else{
+                panelLogin.setVisible(false);
+                panelRegistro.setVisible(false); 
+            }
+
+            Usuarios userDefault = new Usuarios();
+            
+            userDefault.setNombre("SuperUser");
+            userDefault.setCorreo("abc@gmail.com");
+            userDefault.setContraseña("1234");
+
+            MenuTool = new MenuTools(this,userDefault);
+            getContentPane().add(MenuTool, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 290, 474));
+
+            MenuItem = new MenuItems(this,userDefault);
+            getContentPane().add(MenuItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474));
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -380,8 +411,8 @@ public class Index extends javax.swing.JFrame {
     }
     
     public void set_panel_home(boolean activa){
-        jPanel1.setVisible(activa);
-        jPanel2.setVisible(activa);
+        panelLogin.setVisible(activa);
+        panelNoticias.setVisible(activa);
     }
     
     public void set_panel_menu(boolean activa){
@@ -422,18 +453,21 @@ public class Index extends javax.swing.JFrame {
         // TODO add your handling code here:
         switch(panelAbierto){
             case "registro":
-                n.setVisible(false);
+                panelRegistro.setVisible(false);
                 this.activaPanelHome();
                 break;
             case "menu":
+                jLabel11.setVisible(false);
                 destruye_panel_menu();
                 this.set_panel_home(true);
                 break;
             case "drive":
+                panelAbierto = "menu";
                 destruye_panel_drive();
                 this.set_panel_menu(true);
                 break;
             case "organizador":
+                panelAbierto = "menu";
                 destruye_panel_agenda();
                 this.set_panel_menu(true);
                 break;
@@ -464,7 +498,7 @@ public class Index extends javax.swing.JFrame {
     }
     
     public void activaPanelHome(){
-        this.jPanel2.setVisible(true);
+        this.panelNoticias.setVisible(true);
         Color ver = new Color(230,28,93);
         jLabel8.setForeground(ver);
         jLabel11.setVisible(false);
@@ -508,7 +542,6 @@ public class Index extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Drive;
-    private javax.swing.JTextField NombreUser;
     private javax.swing.JPasswordField contraseñaUser;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -522,8 +555,6 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -537,5 +568,8 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JLabel nameLBL4;
     private javax.swing.JLabel nameLBL5;
     private javax.swing.JLabel nameLBL6;
+    private javax.swing.JPanel panelLogin;
+    private javax.swing.JPanel panelNoticias;
+    private javax.swing.JTextField txtEmailUser;
     // End of variables declaration//GEN-END:variables
 }
