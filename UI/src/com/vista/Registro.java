@@ -9,7 +9,7 @@ import com.controlador.Control_fuentes;
 import com.controlador.LogicaUsuario;
 import com.controlador.encriptador;
 import com.modelo.Usuarios;
-import com.vista.espera.RespuestaModal;
+import com.vista.opciones.RespuestaModal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -193,6 +193,7 @@ public class Registro extends javax.swing.JPanel {
         com.controlador.encriptador md5 = new encriptador();
         user.setCorreo(lblCorreo.getText());
         user.setNombre(lblNombre.getText());
+        user.setTipo(Boolean.FALSE);
         RespuestaModal response = new RespuestaModal(vista, true);
         if (lblP1.getText().equals(lblP2.getText()) && lblP1.getText().length() >= 5) {
             

@@ -8,7 +8,7 @@ package com.controlador;
 import com.modelo.Organizador;
 import com.modelo.Usuarios;
 import com.vista.Index;
-import com.vista.espera.RespuestaModal;
+import com.vista.opciones.RespuestaModal;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

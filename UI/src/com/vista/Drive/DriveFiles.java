@@ -93,6 +93,7 @@ public class DriveFiles extends javax.swing.JPanel {
         BusquedaArchivo.setBorder(null);
         BusquedaArchivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BusquedaArchivo.setSelectedTextColor(new java.awt.Color(0, 102, 255));
+        BusquedaArchivo.setSelectionColor(new java.awt.Color(81, 173, 207));
         BusquedaArchivo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 BusquedaArchivoSeleccion(evt);

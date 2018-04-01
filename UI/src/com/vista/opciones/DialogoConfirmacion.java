@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.vista.espera;
+package com.vista.opciones;
 
 import com.controlador.Control_fuentes;
 import com.controlador.LogicaOrganizador;
@@ -154,7 +154,7 @@ public class DialogoConfirmacion extends javax.swing.JDialog {
         // TODO add your handling code here:
         LogicaOrganizador log = new LogicaOrganizador();
         log.eliminarCita(idO);
-        com.vista.espera.RespuestaModal r = new RespuestaModal(view, true);
+        com.vista.opciones.RespuestaModal r = new RespuestaModal(view, true);
         String texto = "<html><body>Se ha eliminado la<br>entrada con exito.<br></body></html>";
         r.cargaDatos("Atención", texto, "exito");
         r.setVisible(true);

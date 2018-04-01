@@ -14,6 +14,7 @@ import com.modelo.extensionesImagenes;
 import com.modelo.extensionesPresetaciones;
 import com.vista.Drive.archivos.Conversion;
 import com.vista.Index;
+import com.vista.opciones.RespuestaModal;
 import java.io.IOException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -94,24 +95,22 @@ public class DriveTools extends javax.swing.JPanel {
 
     private void descargarF(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_descargarF
         // TODO add your handling code here:
-        
+        RespuestaModal response = new RespuestaModal(vista, true);
         JFileChooser saveDialog = new JFileChooser();
       // Demonstrate "Save" dialog:
-      int rVal = saveDialog.showSaveDialog(vista);
-      if (rVal == JFileChooser.APPROVE_OPTION) {
-        
-        
-        String filename = saveDialog.getSelectedFile().getName();
-        String dir= saveDialog.getCurrentDirectory().toString();
-        System.out.println("archivo ruta mas nombre: " + dir +"\\"+filename);
-        vista.paso_informacion_drive();
-        com.controlador.busqueda b = new busqueda();
-        com.vista.Drive.archivos.Conversion c;
-        com.controlador.hiloEspera espera = new hiloEspera(vista);
+        int rVal = saveDialog.showSaveDialog(vista);
+        if (rVal == JFileChooser.APPROVE_OPTION) {
 
-        
-        for (int i = 0; i < arcivos.size(); i++) {
-            
+
+          String filename = saveDialog.getSelectedFile().getName();
+          String dir= saveDialog.getCurrentDirectory().toString();
+          System.out.println("archivo ruta mas nombre: " + dir +"\\"+filename);
+          vista.paso_informacion_drive();
+          com.controlador.busqueda b = new busqueda();
+          com.vista.Drive.archivos.Conversion c;
+
+          for (int i = 0; i < arcivos.size(); i++) {
+
             try {
                 if (arcivos.get(i).getDownloadUrl() != null && arcivos.get(i).getDownloadUrl().length() > 0) {
                     InputStream is = b.descargaEx(arcivos.get(i));
@@ -127,7 +126,6 @@ public class DriveTools extends javax.swing.JPanel {
 
                     is.close();
                     fos.close();
-                   // a.dispose();
                 }else{
                     byte[]  is = new byte[0];
                     FileOutputStream salida;
@@ -137,15 +135,12 @@ public class DriveTools extends javax.swing.JPanel {
                             c = new Conversion(vista,true);
                             c.EstableceTipo("documento");
                             c.setVisible(true);
-                          
                             String[] dataD = delvolverConverD(c.getPosicion());
-                            espera.paso(delvolverConverD(c.getPosicion()), new FileOutputStream(dir+"\\"+filename+dataD[1]), b.descargaNo(arcivos.get(i),dataD[0]));
-                            espera.start();
-                            /*is = b.descargaNo(arcivos.get(i),dataD[0]);
+                            is = b.descargaNo(arcivos.get(i),dataD[0]);
                             salida = new FileOutputStream(dir+"\\"+filename+dataD[1]);
 
                             salida.write(is);
-                            salida.close();*/
+                            salida.close();
                             break;
                         case "application/vnd.google-apps.spreadsheet":
                             c = new Conversion(vista,true);
@@ -159,12 +154,17 @@ public class DriveTools extends javax.swing.JPanel {
                             salida.close();
                             break;
                     }
-                    //a.dispose();
-                    espera.stop();
+                   
+                   String texto = "<html><body>Se descargo el archivo<br>correctamente.<br></body></html>";
+                   response.cargaDatos("¡Bien!", texto, "exito");
+                   response.setVisible(true);
                 }
                 
 	} catch (IOException e) {
-                System.out.println("A ocurrido un error");
+                System.out.println("A ocurrido un error" + e.getMessage());
+                String texto = "<html><body>Ha ocurrido un error<br>inesperado.<br><br>Más información: "+e.getMessage()+"</body></html>";
+                response.cargaDatos("¡Upps!", texto, "error");
+                response.setVisible(true);
 	}
       }
       }

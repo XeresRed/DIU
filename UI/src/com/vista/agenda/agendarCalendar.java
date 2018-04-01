@@ -12,7 +12,7 @@ import com.modelo.Organizador;
 import com.modelo.Usuarios;
 import com.vista.Index;
 import com.vista.agenda.panelesDias.panelDias;
-import com.vista.espera.RespuestaModal;
+import com.vista.opciones.RespuestaModal;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -89,7 +89,7 @@ public class agendarCalendar extends javax.swing.JPanel {
     }
     
     public void vistaPrevia(String titulo, String Des){
-        com.vista.espera.RespuestaModal r = new RespuestaModal(vista, true);
+        com.vista.opciones.RespuestaModal r = new RespuestaModal(vista, true);
         String texto = "<html><body>No existe un usuario con<br>ese correo electronico.<br></body></html>";
         r.cargaDatos(titulo, Des, "exito");
         r.setVisible(true);

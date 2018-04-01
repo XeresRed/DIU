@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import com.modelo.Table04;
 import com.modelo.Gasto;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,13 +28,13 @@ import javax.persistence.Persistence;
  *
  * @author Juan Camilo
  */
-public class UsuariosJpaController implements Serializable {
+public class UsuariosJpaController1 implements Serializable {
     
-    public UsuariosJpaController(){
+    public UsuariosJpaController1(){
         this.emf = Persistence.createEntityManagerFactory("UIPU");
     }
     
-    public UsuariosJpaController(EntityManagerFactory emf) {
+    public UsuariosJpaController1(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -53,6 +54,11 @@ public class UsuariosJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Table04 table04 = usuarios.getTable04();
+            if (table04 != null) {
+                table04 = em.getReference(table04.getClass(), table04.getUsuariosCorreo());
+                usuarios.setTable04(table04);
+            }
             Collection<Gasto> attachedGastoCollection = new ArrayList<Gasto>();
             for (Gasto gastoCollectionGastoToAttach : usuarios.getGastoCollection()) {
                 gastoCollectionGastoToAttach = em.getReference(gastoCollectionGastoToAttach.getClass(), gastoCollectionGastoToAttach.getIdgasto());
@@ -66,6 +72,15 @@ public class UsuariosJpaController implements Serializable {
             }
             usuarios.setOrganizadorCollection(attachedOrganizadorCollection);
             em.persist(usuarios);
+            if (table04 != null) {
+                Usuarios oldUsuariosOfTable04 = table04.getUsuarios();
+                if (oldUsuariosOfTable04 != null) {
+                    oldUsuariosOfTable04.setTable04(null);
+                    oldUsuariosOfTable04 = em.merge(oldUsuariosOfTable04);
+                }
+                table04.setUsuarios(usuarios);
+                table04 = em.merge(table04);
+            }
             for (Gasto gastoCollectionGasto : usuarios.getGastoCollection()) {
                 Usuarios oldUsuariosCorreoOfGastoCollectionGasto = gastoCollectionGasto.getUsuariosCorreo();
                 gastoCollectionGasto.setUsuariosCorreo(usuarios);
@@ -103,11 +118,19 @@ public class UsuariosJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Usuarios persistentUsuarios = em.find(Usuarios.class, usuarios.getCorreo());
+            Table04 table04Old = persistentUsuarios.getTable04();
+            Table04 table04New = usuarios.getTable04();
             Collection<Gasto> gastoCollectionOld = persistentUsuarios.getGastoCollection();
             Collection<Gasto> gastoCollectionNew = usuarios.getGastoCollection();
             Collection<Organizador> organizadorCollectionOld = persistentUsuarios.getOrganizadorCollection();
             Collection<Organizador> organizadorCollectionNew = usuarios.getOrganizadorCollection();
             List<String> illegalOrphanMessages = null;
+            if (table04Old != null && !table04Old.equals(table04New)) {
+                if (illegalOrphanMessages == null) {
+                    illegalOrphanMessages = new ArrayList<String>();
+                }
+                illegalOrphanMessages.add("You must retain Table04 " + table04Old + " since its usuarios field is not nullable.");
+            }
             for (Gasto gastoCollectionOldGasto : gastoCollectionOld) {
                 if (!gastoCollectionNew.contains(gastoCollectionOldGasto)) {
                     if (illegalOrphanMessages == null) {
@@ -127,6 +150,10 @@ public class UsuariosJpaController implements Serializable {
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
+            if (table04New != null) {
+                table04New = em.getReference(table04New.getClass(), table04New.getUsuariosCorreo());
+                usuarios.setTable04(table04New);
+            }
             Collection<Gasto> attachedGastoCollectionNew = new ArrayList<Gasto>();
             for (Gasto gastoCollectionNewGastoToAttach : gastoCollectionNew) {
                 gastoCollectionNewGastoToAttach = em.getReference(gastoCollectionNewGastoToAttach.getClass(), gastoCollectionNewGastoToAttach.getIdgasto());
@@ -142,6 +169,15 @@ public class UsuariosJpaController implements Serializable {
             organizadorCollectionNew = attachedOrganizadorCollectionNew;
             usuarios.setOrganizadorCollection(organizadorCollectionNew);
             usuarios = em.merge(usuarios);
+            if (table04New != null && !table04New.equals(table04Old)) {
+                Usuarios oldUsuariosOfTable04 = table04New.getUsuarios();
+                if (oldUsuariosOfTable04 != null) {
+                    oldUsuariosOfTable04.setTable04(null);
+                    oldUsuariosOfTable04 = em.merge(oldUsuariosOfTable04);
+                }
+                table04New.setUsuarios(usuarios);
+                table04New = em.merge(table04New);
+            }
             for (Gasto gastoCollectionNewGasto : gastoCollectionNew) {
                 if (!gastoCollectionOld.contains(gastoCollectionNewGasto)) {
                     Usuarios oldUsuariosCorreoOfGastoCollectionNewGasto = gastoCollectionNewGasto.getUsuariosCorreo();
@@ -194,6 +230,13 @@ public class UsuariosJpaController implements Serializable {
                 throw new NonexistentEntityException("The usuarios with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
+            Table04 table04OrphanCheck = usuarios.getTable04();
+            if (table04OrphanCheck != null) {
+                if (illegalOrphanMessages == null) {
+                    illegalOrphanMessages = new ArrayList<String>();
+                }
+                illegalOrphanMessages.add("This Usuarios (" + usuarios + ") cannot be destroyed since the Table04 " + table04OrphanCheck + " in its table04 field has a non-nullable usuarios field.");
+            }
             Collection<Gasto> gastoCollectionOrphanCheck = usuarios.getGastoCollection();
             for (Gasto gastoCollectionOrphanCheckGasto : gastoCollectionOrphanCheck) {
                 if (illegalOrphanMessages == null) {
@@ -264,10 +307,6 @@ public class UsuariosJpaController implements Serializable {
         } finally {
             em.close();
         }
-    }
-
-    public void edit(Organizador id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

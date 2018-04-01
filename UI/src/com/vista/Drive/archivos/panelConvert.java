@@ -41,7 +41,7 @@ public class panelConvert extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(254, 244, 232));
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 64, 64));
 

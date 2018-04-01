@@ -10,7 +10,7 @@ import com.controlador.LogicaOrganizador;
 import com.modelo.Organizador;
 import com.modelo.Usuarios;
 import com.vista.Index;
-import com.vista.espera.RespuestaModal;
+import com.vista.opciones.RespuestaModal;
 import java.awt.Component;
 import java.util.Calendar;
 import java.util.Date;

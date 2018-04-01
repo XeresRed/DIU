@@ -51,7 +51,7 @@ public class MenuItems extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(4, 222, 173));

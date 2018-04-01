@@ -6,8 +6,8 @@
 package com.controlador;
 
 import com.vista.Index;
-import com.vista.espera.Espera;
-import com.vista.espera.RespuestaModal;
+import com.vista.opciones.Espera;
+import com.vista.opciones.RespuestaModal;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -36,7 +36,7 @@ public class hiloEspera extends Thread{
     @Override
 	public void run() {
         try {
-            com.vista.espera.RespuestaModal s = new RespuestaModal(padre, true);
+            com.vista.opciones.RespuestaModal s = new RespuestaModal(padre, true);
             String texto = "<html><body>Se esta descargando tu<br>archivo.<br></body></html>";
             s.cargaDatos("Espera", texto, "espera");
             s.setVisible(true);

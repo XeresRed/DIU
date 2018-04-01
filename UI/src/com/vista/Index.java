@@ -16,7 +16,7 @@ import com.modelo.Usuarios;
 import com.vista.Drive.DriveFiles;
 import com.vista.Drive.DriveTools;
 import com.vista.Drive.autenticacion;
-import com.vista.espera.RespuestaModal;
+import com.vista.opciones.RespuestaModal;
 import com.vista.menu.MenuItems;
 import com.vista.menu.MenuTools;
 import java.awt.Color;
@@ -343,6 +343,8 @@ public class Index extends javax.swing.JFrame {
                     }else{
                         panelLogin.setVisible(false);
                         panelRegistro.setVisible(false); 
+                        Color ver = new Color(230,28,93);
+                        jLabel8.setForeground(ver);
                     }
 
                     MenuTool = new MenuTools(this,user);

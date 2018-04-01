@@ -9,7 +9,7 @@ import com.modelo.Organizador;
 import com.modelo.Usuarios;
 import com.vista.Index;
 import com.vista.agenda.crearEntrada.CrearEntrada;
-import com.vista.espera.DialogoConfirmacion;
+import com.vista.opciones.DialogoConfirmacion;
 import java.awt.Color;
 import java.util.List;
 
@@ -267,7 +267,7 @@ public class agendarTools extends javax.swing.JPanel {
     private void accesoR2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accesoR2MouseClicked
         // TODO add your handling code here:
         vista.paso_informacion_agenda();
-        com.vista.espera.DialogoConfirmacion a = new DialogoConfirmacion(vista, true);
+        com.vista.opciones.DialogoConfirmacion a = new DialogoConfirmacion(vista, true);
         a.cargaDatos(vista, userAccedido, "Realmente desea eliminar la entrada " + orga.get(0).getTitulo(), orga.get(0).getIdorganizador());
         a.setVisible(true);
         

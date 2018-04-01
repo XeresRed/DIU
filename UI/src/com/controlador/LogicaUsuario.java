@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.modelo.*;
-import com.persistencia.UsuariosJpaController;
+import com.persistencia.UsuariosJpaController1;
 import com.persistencia.exceptions.IllegalOrphanException;
 import com.persistencia.exceptions.NonexistentEntityException;
 
@@ -18,10 +18,10 @@ import com.persistencia.exceptions.NonexistentEntityException;
  * @author usuario
  */
 public class LogicaUsuario {
-    private UsuariosJpaController UsuarioDAO;
+    private UsuariosJpaController1 UsuarioDAO;
 
     public LogicaUsuario() {
-        UsuarioDAO = new UsuariosJpaController();
+        UsuarioDAO = new UsuariosJpaController1();
     }
     
     public void registrarUsuario(Usuarios nuevoItem) throws Exception{
@@ -54,7 +54,7 @@ public class LogicaUsuario {
         return UsuarioDAO.findUsuarios(id);
     }
     
-    public void modificarUsuario(Organizador id){
+    public void modificarUsuario(Usuarios id){
          try {
             UsuarioDAO.edit(id);
         } catch (Exception ex) {
