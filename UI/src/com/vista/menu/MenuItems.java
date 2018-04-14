@@ -13,6 +13,7 @@ import com.vista.Drive.autenticacion;
 import com.vista.Index;
 import com.vista.agenda.agendarCalendar;
 import com.vista.agenda.agendarTools;
+import javax.swing.JButton;
 
 /**
  *
@@ -35,6 +36,11 @@ public class MenuItems extends javax.swing.JPanel {
         this.setName("MenuItems");
         vista = view;
         userAccedido = user;
+    }
+    
+    public JButton[] getBotonesM(){
+        JButton[] b = {jButton1,jButton2,jButton3};
+        return b;
     }
 
     /**

@@ -8,27 +8,23 @@ package com.vista;
 
 import com.controlador.Control_fuentes;
 import com.controlador.LogicaUsuario;
-import com.controlador.busqueda;
 import com.controlador.encriptador;
 import com.google.api.services.drive.model.File;
 import com.modelo.Organizador;
 import com.modelo.Usuarios;
-import com.vista.Drive.DriveFiles;
-import com.vista.Drive.DriveTools;
-import com.vista.Drive.autenticacion;
 import com.vista.opciones.RespuestaModal;
 import com.vista.menu.MenuItems;
 import com.vista.menu.MenuTools;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.UIManager;
-import static javax.swing.UIManager.setLookAndFeel;
 
 /**
  *
@@ -47,6 +43,7 @@ public class Index extends javax.swing.JFrame {
     
     Registro panelRegistro;
     String panelAbierto = "";
+    private boolean banderaUsuario;
 
     /**
      * Creates new form Index
@@ -54,6 +51,7 @@ public class Index extends javax.swing.JFrame {
     public Index() {
         initComponents();
         this.setLocationRelativeTo(null);
+        //
         jLabel11.setVisible(false);
         Control_fuentes cf = new Control_fuentes("texto");
         this.jLabel4.setFont(cf.MyFont(1, 20f));
@@ -293,6 +291,7 @@ public class Index extends javax.swing.JFrame {
         jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(765, 0, 40, 50));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 846, 50));
+        jPanel3.getAccessibleContext().setAccessibleName("TaskBar");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -319,7 +318,8 @@ public class Index extends javax.swing.JFrame {
         if(jLabel8.getForeground().equals(ver)){
             this.panelNoticias.setVisible(false);
             panelRegistro = new Registro(this);
-            getContentPane().add(panelRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474));
+            panelRegistro.setBounds(290, 50, 556, 474);
+            getContentPane().add(panelRegistro);
             jLabel8.setForeground(deat);
             jLabel11.setVisible(true);
             panelAbierto = "registro";
@@ -346,12 +346,40 @@ public class Index extends javax.swing.JFrame {
                         Color ver = new Color(230,28,93);
                         jLabel8.setForeground(ver);
                     }
+                    
+                    if(!user.getTipo())
+                    {
+                        banderaUsuario = true;
+                        MenuTool = new MenuTools(this,user);
+                        
+                        getContentPane().add(MenuTool, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 290, 474));
 
-                    MenuTool = new MenuTools(this,user);
-                    getContentPane().add(MenuTool, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 290, 474));
-
-                    MenuItem = new MenuItems(this,user);
-                    getContentPane().add(MenuItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474));
+                        MenuItem = new MenuItems(this,user);
+                        MenuItem.setBounds(290, 50, 556, 474);
+                        getContentPane().add(MenuItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474) );
+                    }else
+                    {
+                        this.setLayout(null);
+                        banderaUsuario = false;
+                        this.jPanel3.setBackground(Color.red);
+                        jPanel3.setLayout(null);
+                        jPanel3.setSize(450, 50);
+                        
+                        this.setSize(new Dimension(450,524));
+                        jLabel11.setLocation(370, 0);
+                        jLabel4.setLocation(410, 0);
+                        
+                        MenuItem = new MenuItems(this,user);
+                        MenuItem.setBounds(0, 50, 450, 474);
+                        MenuItem.setLayout(null);
+                        JButton[] a = MenuItem.getBotonesM();
+                        a[0].setBounds(0,205,450,80);
+                        a[1].setBounds(0,110,450,80);
+                        a[2].setBounds(0,15,450,80);
+                        this.add(MenuItem);
+                        
+                        repaint();
+                    }
                 }else{
                     String texto = "<html><body>La contraseña es<br>incorrecta.<br></body></html>";
                    response.cargaDatos("¡Upps!", texto, "error");
@@ -437,8 +465,13 @@ public class Index extends javax.swing.JFrame {
         this.remove(MenuTool);
     }
     
+    private void destruye_panel_menu_mayor(){
+        this.remove(MenuItem);
+    }
+    
     public void paso_informacion_drive(){
         List<File> descargar = Drivefiles.llama_archivos_seleccionados();
+        System.out.println("com.vista.Index.paso_informacion_drive()" + descargar.size());
         if(!descargar.isEmpty()){
             Drivetools.recibir_informacion(descargar);
         }else{
@@ -460,8 +493,14 @@ public class Index extends javax.swing.JFrame {
                 break;
             case "menu":
                 jLabel11.setVisible(false);
-                destruye_panel_menu();
-                this.set_panel_home(true);
+                if(banderaUsuario){
+                    destruye_panel_menu();
+                    this.set_panel_home(true);
+                }else{
+                    destruye_panel_menu_mayor();
+                    reset();
+                    this.set_panel_home(true);
+                }
                 break;
             case "drive":
                 panelAbierto = "menu";
@@ -574,4 +613,15 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JPanel panelNoticias;
     private javax.swing.JTextField txtEmailUser;
     // End of variables declaration//GEN-END:variables
+
+    private void reset() {
+        this.setSize(new Dimension(846,524));
+        this.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        
+        this.jPanel3.setBackground(new Color(0,116,228));
+        jPanel3.setSize(846, 50);
+        jLabel4.setLocation(805, 0);
+        jLabel11.setLocation(765, 0);
+        
+    }
 }

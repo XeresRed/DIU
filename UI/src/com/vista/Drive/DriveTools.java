@@ -15,9 +15,11 @@ import com.modelo.extensionesPresetaciones;
 import com.vista.Drive.archivos.Conversion;
 import com.vista.Index;
 import com.vista.opciones.RespuestaModal;
+import java.awt.Color;
 import java.io.IOException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFileChooser;
 
@@ -27,7 +29,7 @@ import javax.swing.JFileChooser;
  */
 public class DriveTools extends javax.swing.JPanel {
     Index vista;
-    List<File> arcivos;
+    List<File> arcivos = new ArrayList<File>();
     com.modelo.extensionesDocumento Documeto;
     com.modelo.extensionesHojasCalculo Calculo;
     com.modelo.extensionesImagenes Imagen;
@@ -54,9 +56,9 @@ public class DriveTools extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nameLBL2 = new javax.swing.JLabel();
+        lblDescargar = new javax.swing.JLabel();
         Drive = new javax.swing.JLabel();
-        nameLBL3 = new javax.swing.JLabel();
+        lblSubir = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -66,25 +68,41 @@ public class DriveTools extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(290, 425));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        nameLBL2.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
-        nameLBL2.setForeground(new java.awt.Color(255, 255, 255));
-        nameLBL2.setText("Descargar archivo");
-        nameLBL2.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblDescargar.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
+        lblDescargar.setForeground(new java.awt.Color(255, 255, 255));
+        lblDescargar.setText("Descargar archivo");
+        lblDescargar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblDescargar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 descargarF(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblDescargarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblDescargarMouseExited(evt);
+            }
         });
-        add(nameLBL2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
+        add(lblDescargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
 
         Drive.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Drive.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/conducir.png"))); // NOI18N
         Drive.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         add(Drive, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 110, 90));
 
-        nameLBL3.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
-        nameLBL3.setForeground(new java.awt.Color(255, 255, 255));
-        nameLBL3.setText("Subir un archivo");
-        add(nameLBL3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
+        lblSubir.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
+        lblSubir.setForeground(new java.awt.Color(255, 255, 255));
+        lblSubir.setText("Subir un archivo");
+        lblSubir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblSubir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblSubirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblSubirMouseExited(evt);
+            }
+        });
+        add(lblSubir, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/archivo(1).png"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 30, 50));
@@ -96,81 +114,115 @@ public class DriveTools extends javax.swing.JPanel {
     private void descargarF(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_descargarF
         // TODO add your handling code here:
         RespuestaModal response = new RespuestaModal(vista, true);
-        JFileChooser saveDialog = new JFileChooser();
-      // Demonstrate "Save" dialog:
-        int rVal = saveDialog.showSaveDialog(vista);
-        if (rVal == JFileChooser.APPROVE_OPTION) {
+        vista.paso_informacion_drive();
+        if(arcivos.size() > 0)
+        {
+            
+            JFileChooser saveDialog = new JFileChooser();
+          // Demonstrate "Save" dialog:
+            int rVal = saveDialog.showSaveDialog(vista);
+            if (rVal == JFileChooser.APPROVE_OPTION) {
 
 
-          String filename = saveDialog.getSelectedFile().getName();
-          String dir= saveDialog.getCurrentDirectory().toString();
-          System.out.println("archivo ruta mas nombre: " + dir +"\\"+filename);
-          vista.paso_informacion_drive();
-          com.controlador.busqueda b = new busqueda();
-          com.vista.Drive.archivos.Conversion c;
+              String filename = saveDialog.getSelectedFile().getName();
+              String dir= saveDialog.getCurrentDirectory().toString();
+              System.out.println("archivo ruta mas nombre: " + dir +"\\"+filename);
+              
+              com.controlador.busqueda b = new busqueda();
+              com.vista.Drive.archivos.Conversion c;
 
-          for (int i = 0; i < arcivos.size(); i++) {
+              for (int i = 0; i < arcivos.size(); i++) {
 
-            try {
-                if (arcivos.get(i).getDownloadUrl() != null && arcivos.get(i).getDownloadUrl().length() > 0) {
-                    InputStream is = b.descargaEx(arcivos.get(i));
-                    FileOutputStream fos = new FileOutputStream(dir+"\\"+arcivos.get(i).getTitle());
+                try {
+                    if (arcivos.get(i).getDownloadUrl() != null && arcivos.get(i).getDownloadUrl().length() > 0) {
+                        InputStream is = b.descargaEx(arcivos.get(i));
+                        FileOutputStream fos = new FileOutputStream(dir+"\\"+arcivos.get(i).getTitle());
 
-                            // Lectura de la foto de la web y escritura en fichero local
-                    byte[] array = new byte[1000]; // buffer temporal de lectura.
-                    int leido = is.read(array);
-                    while (leido > 0) {
-                            fos.write(array, 0, leido);
-                            leido = is.read(array);
+                                // Lectura de la foto de la web y escritura en fichero local
+                        byte[] array = new byte[1000]; // buffer temporal de lectura.
+                        int leido = is.read(array);
+                        while (leido > 0) {
+                                fos.write(array, 0, leido);
+                                leido = is.read(array);
+                        }
+
+                        is.close();
+                        fos.close();
+                    }else{
+                        byte[]  is = new byte[0];
+                        FileOutputStream salida;
+                        System.out.println("\niamgen drive:" + arcivos.get(i).getMimeType());
+                        switch(arcivos.get(i).getMimeType()){
+                            case "application/vnd.google-apps.document":
+                                c = new Conversion(vista,true);
+                                c.EstableceTipo("documento");
+                                c.setVisible(true);
+                                String[] dataD = delvolverConverD(c.getPosicion());
+                                is = b.descargaNo(arcivos.get(i),dataD[0]);
+                                salida = new FileOutputStream(dir+"\\"+filename+dataD[1]);
+
+                                salida.write(is);
+                                salida.close();
+                                break;
+                            case "application/vnd.google-apps.spreadsheet":
+                                c = new Conversion(vista,true);
+                                c.EstableceTipo("hoja");
+                                c.setVisible(true);
+                                String[] dataS = delvolverConverS(c.getPosicion());
+                                is = b.descargaNo(arcivos.get(i), dataS[0]);
+                                salida = new FileOutputStream(dir+"\\"+filename+dataS[1]);
+
+                                salida.write(is);
+                                salida.close();
+                                break;
+                        }
+
+                       String texto = "<html><body>Se descargo el archivo<br>correctamente.<br></body></html>";
+                       response.cargaDatos("¡Bien!", texto, "exito");
+                       response.setVisible(true);
                     }
 
-                    is.close();
-                    fos.close();
-                }else{
-                    byte[]  is = new byte[0];
-                    FileOutputStream salida;
-                    System.out.println("\niamgen drive:" + arcivos.get(i).getMimeType());
-                    switch(arcivos.get(i).getMimeType()){
-                        case "application/vnd.google-apps.document":
-                            c = new Conversion(vista,true);
-                            c.EstableceTipo("documento");
-                            c.setVisible(true);
-                            String[] dataD = delvolverConverD(c.getPosicion());
-                            is = b.descargaNo(arcivos.get(i),dataD[0]);
-                            salida = new FileOutputStream(dir+"\\"+filename+dataD[1]);
-
-                            salida.write(is);
-                            salida.close();
-                            break;
-                        case "application/vnd.google-apps.spreadsheet":
-                            c = new Conversion(vista,true);
-                            c.EstableceTipo("hoja");
-                            c.setVisible(true);
-                            String[] dataS = delvolverConverS(c.getPosicion());
-                            is = b.descargaNo(arcivos.get(i), dataS[0]);
-                            salida = new FileOutputStream(dir+"\\"+filename+dataS[1]);
-
-                            salida.write(is);
-                            salida.close();
-                            break;
-                    }
-                   
-                   String texto = "<html><body>Se descargo el archivo<br>correctamente.<br></body></html>";
-                   response.cargaDatos("¡Bien!", texto, "exito");
-                   response.setVisible(true);
-                }
-                
-	} catch (IOException e) {
-                System.out.println("A ocurrido un error" + e.getMessage());
-                String texto = "<html><body>Ha ocurrido un error<br>inesperado.<br><br>Más información: "+e.getMessage()+"</body></html>";
-                response.cargaDatos("¡Upps!", texto, "error");
-                response.setVisible(true);
-	}
-      }
-      }
+            } catch (IOException e) {
+                    System.out.println("A ocurrido un error" + e.getMessage());
+                    String texto = "<html><body>Ha ocurrido un error<br>inesperado.<br><br>Más información: "+e.getMessage()+"</body></html>";
+                    response.cargaDatos("¡Upps!", texto, "error");
+                    response.setVisible(true);
+            }
+          }
+        }
+      }else
+        {
+            String texto = "<html><body>Debe seleccionar primero<br>un archivo.<br></body></html>";
+            response.cargaDatos("¡Upps!", texto, "error");
+            response.setVisible(true);
+        }
 
       
     }//GEN-LAST:event_descargarF
+
+    private void lblDescargarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDescargarMouseEntered
+        // TODO add your handling code here:
+        Color n = new Color(151,255,207);
+        lblDescargar.setForeground(n);
+    }//GEN-LAST:event_lblDescargarMouseEntered
+
+    private void lblDescargarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDescargarMouseExited
+        // TODO add your handling code here:
+        Color n = new Color(255,255,255);
+        lblDescargar.setForeground(n);
+    }//GEN-LAST:event_lblDescargarMouseExited
+
+    private void lblSubirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSubirMouseExited
+        // TODO add your handling code here:
+        Color n = new Color(255,255,255);
+        lblSubir.setForeground(n);
+    }//GEN-LAST:event_lblSubirMouseExited
+
+    private void lblSubirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSubirMouseEntered
+        // TODO add your handling code here:
+        Color n = new Color(151,255,207);
+        lblSubir.setForeground(n);
+    }//GEN-LAST:event_lblSubirMouseEntered
     
     private String[] delvolverConverD(int pos) {
         String[] conver;
@@ -238,8 +290,8 @@ public class DriveTools extends javax.swing.JPanel {
     private javax.swing.JLabel Drive;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel nameLBL2;
-    private javax.swing.JLabel nameLBL3;
+    private javax.swing.JLabel lblDescargar;
+    private javax.swing.JLabel lblSubir;
     // End of variables declaration//GEN-END:variables
 
 

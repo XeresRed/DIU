@@ -314,7 +314,7 @@ public class CrearEntrada extends javax.swing.JFrame {
                 nuevaCita.setTag(tag);
                 nuevaCita.setUsuariosCorreo(userAccedido);
 
-                //organizadorDAO.registrarCita(nuevaCita);
+                organizadorDAO.registrarCita(nuevaCita);
                 RespuestaModal response = new RespuestaModal(this, true);
                 String texto = "<html><body>Se creo la cita<br>con exito.<br></body></html>";
                 response.cargaDatos("¡Exito!",texto, "exito");

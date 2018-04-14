@@ -45,15 +45,17 @@ public class Registro extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         lblNombre = new javax.swing.JTextField();
         lblCorreo = new javax.swing.JTextField();
-        nameLBL3 = new javax.swing.JLabel();
         nameLBL4 = new javax.swing.JLabel();
         nameLBL5 = new javax.swing.JLabel();
-        nameLBL6 = new javax.swing.JLabel();
         lblP1 = new javax.swing.JPasswordField();
         lblP2 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         nameLBL7 = new javax.swing.JLabel();
+        lblEdad = new javax.swing.JTextField();
+        nameLBL8 = new javax.swing.JLabel();
+        nameLBL9 = new javax.swing.JLabel();
+        nameLBL10 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -66,11 +68,11 @@ public class Registro extends javax.swing.JPanel {
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, -1, -1));
 
         lblNombre.setBackground(new java.awt.Color(204, 204, 204));
-        lblNombre.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
+        lblNombre.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 15)); // NOI18N
         lblNombre.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         lblNombre.setText("Ingrese su nombre...");
         lblNombre.setToolTipText("");
-        lblNombre.setBorder(null);
+        lblNombre.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 5, true));
         lblNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblNombre.setSelectedTextColor(new java.awt.Color(0, 51, 255));
         lblNombre.setSelectionColor(new java.awt.Color(81, 173, 207));
@@ -79,14 +81,14 @@ public class Registro extends javax.swing.JPanel {
                 lblNombreSeleccion(evt);
             }
         });
-        add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 270, 30));
+        add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 270, 30));
 
         lblCorreo.setBackground(new java.awt.Color(204, 204, 204));
-        lblCorreo.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
+        lblCorreo.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 15)); // NOI18N
         lblCorreo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         lblCorreo.setText("Ingrese su correo electronico...");
         lblCorreo.setToolTipText("");
-        lblCorreo.setBorder(null);
+        lblCorreo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 5, true));
         lblCorreo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCorreo.setSelectedTextColor(new java.awt.Color(0, 51, 255));
         lblCorreo.setSelectionColor(new java.awt.Color(81, 173, 207));
@@ -95,25 +97,17 @@ public class Registro extends javax.swing.JPanel {
                 lblCorreoSeleccion(evt);
             }
         });
-        add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 270, 30));
+        add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 270, 30));
 
-        nameLBL3.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
-        nameLBL3.setText("Contraseña");
-        add(nameLBL3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
-
-        nameLBL4.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        nameLBL4.setFont(new java.awt.Font("Microsoft YaHei UI Light", 0, 18)); // NOI18N
         nameLBL4.setText("Nombre del usuario:");
-        add(nameLBL4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+        add(nameLBL4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
         nameLBL5.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 14)); // NOI18N
         nameLBL5.setForeground(new java.awt.Color(255, 102, 102));
         nameLBL5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nameLBL5.setText("Registro exitoso");
         add(nameLBL5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 190, 70));
-
-        nameLBL6.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
-        nameLBL6.setText("Repite la contraseña");
-        add(nameLBL6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
 
         lblP1.setBackground(new java.awt.Color(204, 204, 204));
         lblP1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
@@ -128,7 +122,7 @@ public class Registro extends javax.swing.JPanel {
                 lblP1seleccionP(evt);
             }
         });
-        add(lblP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 270, 30));
+        add(lblP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 270, 30));
 
         lblP2.setBackground(new java.awt.Color(204, 204, 204));
         lblP2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
@@ -143,7 +137,7 @@ public class Registro extends javax.swing.JPanel {
                 lblP2seleccionP(evt);
             }
         });
-        add(lblP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 270, 30));
+        add(lblP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 270, 30));
 
         jButton1.setBackground(new java.awt.Color(4, 222, 173));
         jButton1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
@@ -157,14 +151,42 @@ public class Registro extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 110, 40));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, 110, 40));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/cohete.png"))); // NOI18N
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 150, 240));
 
-        nameLBL7.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
-        nameLBL7.setText("Email");
-        add(nameLBL7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+        nameLBL7.setFont(new java.awt.Font("Microsoft YaHei UI Light", 0, 18)); // NOI18N
+        nameLBL7.setText("Repita la Contraseña");
+        add(nameLBL7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
+
+        lblEdad.setBackground(new java.awt.Color(204, 204, 204));
+        lblEdad.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 15)); // NOI18N
+        lblEdad.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        lblEdad.setText("Ingrese su edad...");
+        lblEdad.setToolTipText("");
+        lblEdad.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 5, true));
+        lblEdad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblEdad.setSelectedTextColor(new java.awt.Color(0, 51, 255));
+        lblEdad.setSelectionColor(new java.awt.Color(81, 173, 207));
+        lblEdad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                lblEdadSeleccion(evt);
+            }
+        });
+        add(lblEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 270, 30));
+
+        nameLBL8.setFont(new java.awt.Font("Microsoft YaHei UI Light", 0, 18)); // NOI18N
+        nameLBL8.setText("Email");
+        add(nameLBL8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+
+        nameLBL9.setFont(new java.awt.Font("Microsoft YaHei UI Light", 0, 18)); // NOI18N
+        nameLBL9.setText("Edad");
+        add(nameLBL9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
+
+        nameLBL10.setFont(new java.awt.Font("Microsoft YaHei UI Light", 0, 18)); // NOI18N
+        nameLBL10.setText("Contraseña");
+        add(nameLBL10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblNombreSeleccion(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblNombreSeleccion
@@ -193,7 +215,19 @@ public class Registro extends javax.swing.JPanel {
         com.controlador.encriptador md5 = new encriptador();
         user.setCorreo(lblCorreo.getText());
         user.setNombre(lblNombre.getText());
-        user.setTipo(Boolean.FALSE);
+        
+        /** Controlador de interfaz según la edad del usuario
+         * 0 - para personas del grupo de menores a 63 años
+         * 1 - para personas del grupo de mayores o iguales a 63 años
+         */
+        
+        if(Integer.parseInt(lblEdad.getText()) >= 63)
+        {
+            user.setTipo(Boolean.TRUE);
+        }else{
+            user.setTipo(Boolean.FALSE);
+        }
+        
         RespuestaModal response = new RespuestaModal(vista, true);
         if (lblP1.getText().equals(lblP2.getText()) && lblP1.getText().length() >= 5) {
             
@@ -218,19 +252,25 @@ public class Registro extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void lblEdadSeleccion(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lblEdadSeleccion
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblEdadSeleccion
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField lblCorreo;
+    private javax.swing.JTextField lblEdad;
     private javax.swing.JTextField lblNombre;
     private javax.swing.JPasswordField lblP1;
     private javax.swing.JPasswordField lblP2;
-    private javax.swing.JLabel nameLBL3;
+    private javax.swing.JLabel nameLBL10;
     private javax.swing.JLabel nameLBL4;
     private javax.swing.JLabel nameLBL5;
-    private javax.swing.JLabel nameLBL6;
     private javax.swing.JLabel nameLBL7;
+    private javax.swing.JLabel nameLBL8;
+    private javax.swing.JLabel nameLBL9;
     // End of variables declaration//GEN-END:variables
 }

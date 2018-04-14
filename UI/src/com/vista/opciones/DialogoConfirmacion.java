@@ -153,12 +153,12 @@ public class DialogoConfirmacion extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         LogicaOrganizador log = new LogicaOrganizador();
+        view.desactualizaAgenda();
         log.eliminarCita(idO);
         com.vista.opciones.RespuestaModal r = new RespuestaModal(view, true);
         String texto = "<html><body>Se ha eliminado la<br>entrada con exito.<br></body></html>";
         r.cargaDatos("Atención", texto, "exito");
         r.setVisible(true);
-        view.desactualizaAgenda();
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

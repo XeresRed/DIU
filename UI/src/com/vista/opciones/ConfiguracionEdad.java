@@ -5,6 +5,8 @@
  */
 package com.vista.opciones;
 
+import java.awt.Color;
+
 /**
  *
  * @author Juan Camilo
@@ -48,6 +50,14 @@ public class ConfiguracionEdad extends javax.swing.JDialog {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel2MouseExited(evt);
+            }
+        });
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setText("Imagen 1");
@@ -55,7 +65,7 @@ public class ConfiguracionEdad extends javax.swing.JDialog {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("¿Qué formato desea?");
+        jLabel5.setText("Sencilla");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 290, 80));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 420, 100));
@@ -69,7 +79,7 @@ public class ConfiguracionEdad extends javax.swing.JDialog {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("¿Qué formato desea?");
+        jLabel2.setText("Completa");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 290, 80));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 420, 100));
@@ -90,7 +100,7 @@ public class ConfiguracionEdad extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("¿Qué formato desea?");
+        jLabel3.setText("Eliga la disposición de la pantalla");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 440, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -113,6 +123,18 @@ public class ConfiguracionEdad extends javax.swing.JDialog {
        
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jPanel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseEntered
+        // TODO add your handling code here:
+        Color n = new Color(95,204,156);
+        jPanel2.setForeground(n);
+    }//GEN-LAST:event_jPanel2MouseEntered
+
+    private void jPanel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseExited
+        // TODO add your handling code here:
+        Color n = new Color(240,240,240);
+        jPanel2.setForeground(n);
+    }//GEN-LAST:event_jPanel2MouseExited
 
     /**
      * @param args the command line arguments

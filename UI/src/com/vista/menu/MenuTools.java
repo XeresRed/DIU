@@ -37,10 +37,8 @@ public class MenuTools extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        accesoR4 = new javax.swing.JLabel();
         nameLBL4 = new javax.swing.JLabel();
         accesoR2 = new javax.swing.JLabel();
-        accesoR3 = new javax.swing.JLabel();
         nameLBL8 = new javax.swing.JLabel();
         nombreUsuario = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -50,21 +48,6 @@ public class MenuTools extends javax.swing.JPanel {
         setBackground(new java.awt.Color(53, 92, 125));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        accesoR4.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        accesoR4.setForeground(new java.awt.Color(255, 255, 255));
-        accesoR4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/carteraA.png"))); // NOI18N
-        accesoR4.setText("Consultar cartera");
-        accesoR4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        accesoR4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                accesoR4MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                accesoR4MouseExited(evt);
-            }
-        });
-        add(accesoR4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 230, 30));
 
         nameLBL4.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         nameLBL4.setForeground(new java.awt.Color(255, 255, 255));
@@ -85,21 +68,6 @@ public class MenuTools extends javax.swing.JPanel {
             }
         });
         add(accesoR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 230, 30));
-
-        accesoR3.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        accesoR3.setForeground(new java.awt.Color(255, 255, 255));
-        accesoR3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/carteraA.png"))); // NOI18N
-        accesoR3.setText("Añadir cartera");
-        accesoR3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        accesoR3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                accesoR3MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                accesoR3MouseExited(evt);
-            }
-        });
-        add(accesoR3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 230, 30));
 
         nameLBL8.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         nameLBL8.setForeground(new java.awt.Color(255, 255, 255));
@@ -162,30 +130,6 @@ public class MenuTools extends javax.swing.JPanel {
         accesoR2.setForeground(n);
     }//GEN-LAST:event_accesoR2MouseExited
 
-    private void accesoR3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accesoR3MouseEntered
-        // TODO add your handling code here:
-        Color n = new Color(95,204,156);
-        accesoR3.setForeground(n);
-    }//GEN-LAST:event_accesoR3MouseEntered
-
-    private void accesoR3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accesoR3MouseExited
-        // TODO add your handling code here:
-        Color n = new Color(240,240,240);
-        accesoR3.setForeground(n);
-    }//GEN-LAST:event_accesoR3MouseExited
-
-    private void accesoR4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accesoR4MouseEntered
-        // TODO add your handling code here:
-        Color n = new Color(95,204,156);
-        accesoR4.setForeground(n);
-    }//GEN-LAST:event_accesoR4MouseEntered
-
-    private void accesoR4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accesoR4MouseExited
-        // TODO add your handling code here:
-        Color n = new Color(240,240,240);
-        accesoR4.setForeground(n);
-    }//GEN-LAST:event_accesoR4MouseExited
-
     private void accesoR2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accesoR2MouseEntered
         // TODO add your handling code here:
         Color n = new Color(95,204,156);
@@ -203,8 +147,6 @@ public class MenuTools extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accesoR1;
     private javax.swing.JLabel accesoR2;
-    private javax.swing.JLabel accesoR3;
-    private javax.swing.JLabel accesoR4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel nameLBL4;

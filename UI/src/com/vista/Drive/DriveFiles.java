@@ -59,7 +59,7 @@ public class DriveFiles extends javax.swing.JPanel {
 
         nameLBL3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
+        panelArchivosDrive = new javax.swing.JPanel();
         BusquedaArchivo = new javax.swing.JTextField();
         btnBorraBusqueda = new javax.swing.JButton();
         btnBusqueda = new javax.swing.JButton();
@@ -79,9 +79,10 @@ public class DriveFiles extends javax.swing.JPanel {
         jScrollPane1.setForeground(new java.awt.Color(204, 204, 204));
         jScrollPane1.setOpaque(false);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jScrollPane1.setViewportView(jPanel1);
+        panelArchivosDrive.setBackground(new java.awt.Color(204, 204, 204));
+        panelArchivosDrive.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jScrollPane1.setViewportView(panelArchivosDrive);
+        panelArchivosDrive.getAccessibleContext().setAccessibleName("PanelDrive");
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 515, 340));
 
@@ -92,7 +93,7 @@ public class DriveFiles extends javax.swing.JPanel {
         BusquedaArchivo.setToolTipText("");
         BusquedaArchivo.setBorder(null);
         BusquedaArchivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BusquedaArchivo.setSelectedTextColor(new java.awt.Color(0, 102, 255));
+        BusquedaArchivo.setSelectedTextColor(new java.awt.Color(0, 51, 255));
         BusquedaArchivo.setSelectionColor(new java.awt.Color(81, 173, 207));
         BusquedaArchivo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -168,14 +169,14 @@ public class DriveFiles extends javax.swing.JPanel {
     private javax.swing.JTextField BusquedaArchivo;
     private javax.swing.JButton btnBorraBusqueda;
     private javax.swing.JButton btnBusqueda;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nameLBL3;
     private javax.swing.JLabel nameLBL5;
+    public javax.swing.JPanel panelArchivosDrive;
     // End of variables declaration//GEN-END:variables
 
     private void crearPaneles() {
-        jPanel1.removeAll();
+        panelArchivosDrive.removeAll();
         representacionA = new ArrayList<>();
         int x = 10;
         int y = 10;
@@ -202,7 +203,7 @@ public class DriveFiles extends javax.swing.JPanel {
             
             a.setVisible(true);
             a.addMouseListener(com);
-            jPanel1.add(a, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, wid, heig));
+            panelArchivosDrive.add(a, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, wid, heig));
             x += wid + 10;
             contador++;
         }
@@ -226,7 +227,7 @@ public class DriveFiles extends javax.swing.JPanel {
     }
 
     private void crearPanelesDebusqueda(List<File> encontrado) {
-        jPanel1.removeAll();
+        panelArchivosDrive.removeAll();
         representacionA = new ArrayList<>();
         int x = 10;
         int y = 10;
@@ -253,7 +254,7 @@ public class DriveFiles extends javax.swing.JPanel {
             
             a.setVisible(true);
             a.addMouseListener(com);
-            jPanel1.add(a, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, wid, heig));
+            panelArchivosDrive.add(a, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, wid, heig));
             x += wid + 10;
             contador++;
         }

@@ -134,6 +134,7 @@ public class agendarCalendar extends javax.swing.JPanel {
         for (int i = 0; i < listaOrg.size(); i++) {
             Calendar tiempoLis = toCalendar(listaOrg.get(i).getFecha());
             if((tiempoLis.get(Calendar.MONTH) + 1) == (fecha.get(Calendar.MONTH) + 1) && listaOrg.get(i).getUsuariosCorreo().getCorreo().equals(userAccedido.getCorreo())){
+                //panelCalendario.getComponent(tiempoLis.get(Calendar.DAY_OF_MONTH)+5).setBackground(new Color(255,255,255));
                 listaPanelesDias.get(tiempoLis.get(Calendar.DAY_OF_MONTH)-1).setBackground(new Color(255,255,255));
             }
         }

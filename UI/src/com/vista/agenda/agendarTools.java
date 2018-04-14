@@ -270,7 +270,6 @@ public class agendarTools extends javax.swing.JPanel {
         com.vista.opciones.DialogoConfirmacion a = new DialogoConfirmacion(vista, true);
         a.cargaDatos(vista, userAccedido, "Realmente desea eliminar la entrada " + orga.get(0).getTitulo(), orga.get(0).getIdorganizador());
         a.setVisible(true);
-        
     }//GEN-LAST:event_accesoR2MouseClicked
 
     private void Tag1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag1MouseClicked

@@ -33,11 +33,12 @@ public class controlPaneles implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        Color noS = new Color(254,244,232);
+        Color noS = new Color(255,255,255);
         for(int i = 0; i < view.representacionA.size(); i++){
             if(e.getSource()  == view.representacionA.get(i)){
                 if(noS.equals(view.representacionA.get(i).getBackground())){
-                    view.representacionA.get(i).setBackground(new Color(135,223,214));
+                    view.panelArchivosDrive.getComponent(i).setBackground(new Color(135,223,214));
+                    //view.representacionA.get(i).setBackground(new Color(135,223,214));
                     
                     seleccion.add(i);
                 }else{
