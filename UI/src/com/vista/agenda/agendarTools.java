@@ -5,11 +5,13 @@
  */
 package com.vista.agenda;
 
+import com.controlador.LogicaOrganizador;
 import com.modelo.Organizador;
 import com.modelo.Usuarios;
 import com.vista.Index;
 import com.vista.agenda.crearEntrada.CrearEntrada;
 import com.vista.opciones.DialogoConfirmacion;
+import com.vista.opciones.RespuestaModal;
 import java.awt.Color;
 import java.util.List;
 
@@ -270,6 +272,17 @@ public class agendarTools extends javax.swing.JPanel {
         com.vista.opciones.DialogoConfirmacion a = new DialogoConfirmacion(vista, true);
         a.cargaDatos(vista, userAccedido, "Realmente desea eliminar la entrada " + orga.get(0).getTitulo(), orga.get(0).getIdorganizador());
         a.setVisible(true);
+        boolean respuestaModal = a.getResponse();
+        
+        if(respuestaModal){
+            LogicaOrganizador log = new LogicaOrganizador();
+            vista.desactualizaAgenda();
+            log.eliminarCita(orga.get(0).getIdorganizador());
+            com.vista.opciones.RespuestaModal r = new RespuestaModal(vista, true);
+            String texto = "<html><body>Se ha eliminado la<br>entrada con exito.<br></body></html>";
+            r.cargaDatos("Atención", texto, "exito");
+            r.setVisible(true);
+        }
     }//GEN-LAST:event_accesoR2MouseClicked
 
     private void Tag1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag1MouseClicked

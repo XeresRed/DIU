@@ -20,6 +20,7 @@ public class DialogoConfirmacion extends javax.swing.JDialog {
     String texto;
     int idO;
     Index view;
+    boolean responser;
     /**
      * Creates new form DialogoConfirmacion
      */
@@ -29,7 +30,7 @@ public class DialogoConfirmacion extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         Control_fuentes cf = new Control_fuentes("texto");
         this.jLabel4.setFont(cf.MyFont(1, 20f));
-  
+        responser = false;
     }
     
     public void cargaDatos(Index vista,Usuarios user,String descripcion, int id){
@@ -152,16 +153,13 @@ public class DialogoConfirmacion extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        LogicaOrganizador log = new LogicaOrganizador();
-        view.desactualizaAgenda();
-        log.eliminarCita(idO);
-        com.vista.opciones.RespuestaModal r = new RespuestaModal(view, true);
-        String texto = "<html><body>Se ha eliminado la<br>entrada con exito.<br></body></html>";
-        r.cargaDatos("Atención", texto, "exito");
-        r.setVisible(true);
+        responser = true;
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public boolean getResponse(){
+        return responser;
+    }
     /**
      * @param args the command line arguments
      */
