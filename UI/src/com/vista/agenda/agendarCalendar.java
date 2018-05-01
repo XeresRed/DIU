@@ -5,6 +5,7 @@
  */
 package com.vista.agenda;
 
+import com.controlador.Control_fuentes;
 import com.controlador.LogicaOrganizador;
 import com.controlador.controlPanelesDias;
 import com.google.api.services.drive.model.File;
@@ -32,7 +33,8 @@ public class agendarCalendar extends javax.swing.JPanel {
     controlPanelesDias com;
     LogicaOrganizador logicaDAO = new LogicaOrganizador();
     Index vista;
-    String[] strDays = new String[]{"Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"};
+    String[] strDays = new String[]{"Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"};
+    String[] meses = new String[]{"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
     public List<com.vista.agenda.panelesDias.panelDias> listaPanelesDias = new ArrayList<panelDias>();
     Calendar fecha;
     /**
@@ -42,12 +44,22 @@ public class agendarCalendar extends javax.swing.JPanel {
     public agendarCalendar(Index view, Usuarios user) {
         initComponents();
         this.setName("AgendaCalendario");
+        
+        Control_fuentes tf = new Control_fuentes("texto");
+        this.jLabel1.setFont(tf.MyFont(1, 18f));
+        
         vista = view;
         userAccedido = user;
         fecha = Calendar.getInstance();
         year = fecha.get(Calendar.YEAR);
-        pintaLabelSemana(strDays[fecha.get(Calendar.DAY_OF_WEEK) - 1]);
+
         calcularDiasMes(fecha.get(Calendar.MONTH) + 1);
+        
+        Calendar ahoraCal = Calendar.getInstance();
+        ahoraCal.set(year,fecha.get(Calendar.MONTH),1);
+        jLabel1.setText("Dias del mes de " + meses[fecha.get(Calendar.MONTH)] );
+        int contadorDias = ahoraCal.get(Calendar.DAY_OF_WEEK) - 1;
+        
         com = new controlPanelesDias(this);
         int y = 25;
         int x = 0;
@@ -55,13 +67,16 @@ public class agendarCalendar extends javax.swing.JPanel {
         int contador = 0;
         int wid = 73;
         for (int i = 0; i < numeroDiasMes; i++) {
+            if(contadorDias >=strDays.length ){
+                contadorDias = ahoraCal.get(Calendar.DAY_OF_WEEK) - 1;
+            }
             if(contador == 7){
                 y += heig;  
                 contador = 0;
                 x = 0;
             }
             String numDia = (i + 1) + "";
-            com.vista.agenda.panelesDias.panelDias dia = new panelDias(numDia);
+            com.vista.agenda.panelesDias.panelDias dia = new panelDias(numDia,strDays[contadorDias]);
    
             listaPanelesDias.add(dia);
             dia.setName("panel dia: " + numDia);
@@ -70,6 +85,7 @@ public class agendarCalendar extends javax.swing.JPanel {
             panelCalendario.add(dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, wid, heig));
             x += wid;
             contador++;
+            contadorDias++;
 
         }
         
@@ -183,13 +199,7 @@ public class agendarCalendar extends javax.swing.JPanel {
     private void initComponents() {
 
         panelCalendario = new javax.swing.JPanel();
-        lblDomingo = new javax.swing.JLabel();
-        lblLunes = new javax.swing.JLabel();
-        lblMarte = new javax.swing.JLabel();
-        lblMiercoles = new javax.swing.JLabel();
-        lblJueves = new javax.swing.JLabel();
-        lblViernes = new javax.swing.JLabel();
-        lblSabado = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -198,109 +208,19 @@ public class agendarCalendar extends javax.swing.JPanel {
         panelCalendario.setBackground(new java.awt.Color(204, 204, 204));
         panelCalendario.setPreferredSize(new java.awt.Dimension(512, 375));
         panelCalendario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblDomingo.setBackground(new java.awt.Color(53, 92, 125));
-        lblDomingo.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        lblDomingo.setForeground(new java.awt.Color(255, 255, 255));
-        lblDomingo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblDomingo.setText("Domingo");
-        lblDomingo.setOpaque(true);
-        lblDomingo.setPreferredSize(new java.awt.Dimension(73, 25));
-        panelCalendario.add(lblDomingo, new org.netbeans.lib.awtextra.AbsoluteConstraints(438, 0, -1, -1));
-
-        lblLunes.setBackground(new java.awt.Color(53, 92, 125));
-        lblLunes.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        lblLunes.setForeground(new java.awt.Color(255, 255, 255));
-        lblLunes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLunes.setText("Lunes");
-        lblLunes.setOpaque(true);
-        lblLunes.setPreferredSize(new java.awt.Dimension(73, 25));
-        panelCalendario.add(lblLunes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        lblMarte.setBackground(new java.awt.Color(53, 92, 125));
-        lblMarte.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        lblMarte.setForeground(new java.awt.Color(255, 255, 255));
-        lblMarte.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMarte.setText("Martes");
-        lblMarte.setOpaque(true);
-        lblMarte.setPreferredSize(new java.awt.Dimension(73, 25));
-        panelCalendario.add(lblMarte, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 0, -1, -1));
-
-        lblMiercoles.setBackground(new java.awt.Color(53, 92, 125));
-        lblMiercoles.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        lblMiercoles.setForeground(new java.awt.Color(255, 255, 255));
-        lblMiercoles.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMiercoles.setText("Miercoles");
-        lblMiercoles.setOpaque(true);
-        lblMiercoles.setPreferredSize(new java.awt.Dimension(73, 25));
-        panelCalendario.add(lblMiercoles, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 0, -1, -1));
-
-        lblJueves.setBackground(new java.awt.Color(53, 92, 125));
-        lblJueves.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        lblJueves.setForeground(new java.awt.Color(255, 255, 255));
-        lblJueves.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblJueves.setText("Jueves");
-        lblJueves.setOpaque(true);
-        lblJueves.setPreferredSize(new java.awt.Dimension(73, 25));
-        panelCalendario.add(lblJueves, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 0, -1, -1));
-
-        lblViernes.setBackground(new java.awt.Color(53, 92, 125));
-        lblViernes.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        lblViernes.setForeground(new java.awt.Color(255, 255, 255));
-        lblViernes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblViernes.setText("Viernes");
-        lblViernes.setOpaque(true);
-        lblViernes.setPreferredSize(new java.awt.Dimension(73, 25));
-        panelCalendario.add(lblViernes, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 0, -1, -1));
-
-        lblSabado.setBackground(new java.awt.Color(53, 92, 125));
-        lblSabado.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        lblSabado.setForeground(new java.awt.Color(255, 255, 255));
-        lblSabado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblSabado.setText("Sabado");
-        lblSabado.setOpaque(true);
-        lblSabado.setPreferredSize(new java.awt.Dimension(73, 25));
-        panelCalendario.add(lblSabado, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 0, -1, -1));
-
         add(panelCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 400));
         panelCalendario.getAccessibleContext().setAccessibleName("panelCalendario");
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("jLabel1");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 20, 500, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lblDomingo;
-    private javax.swing.JLabel lblJueves;
-    private javax.swing.JLabel lblLunes;
-    private javax.swing.JLabel lblMarte;
-    private javax.swing.JLabel lblMiercoles;
-    private javax.swing.JLabel lblSabado;
-    private javax.swing.JLabel lblViernes;
+    private javax.swing.JLabel jLabel1;
     public javax.swing.JPanel panelCalendario;
     // End of variables declaration//GEN-END:variables
 
-    private void pintaLabelSemana(String strDay) {
-        switch(strDay){
-            case "Domingo":
-                lblDomingo.setBackground(diaActual);
-                break;
-            case "Lunes":
-                lblLunes.setBackground(diaActual);
-                break;
-            case "Martes":
-                lblMarte.setBackground(diaActual);
-                break;
-            case "Miercoles":
-                lblMiercoles.setBackground(diaActual);
-                break;
-            case "Jueves":
-                lblJueves.setBackground(diaActual);
-                break;
-            case "Viernes":
-                lblViernes.setBackground(diaActual);
-                break;
-            case "Sabado":
-                lblSabado.setBackground(diaActual);
-                break;
-        }
-    }
+    
 }

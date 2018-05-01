@@ -20,9 +20,10 @@ public class panelDias extends javax.swing.JPanel {
     /**
      * Creates new form panelDias
      */
-    public panelDias(String dia) {
+    public panelDias(String dia, String sema) {
         initComponents();
-        lblDia.setText(dia);
+        lblDia1.setText(dia);
+        lblDia.setText(sema);
         idOrganizador = new ArrayList<>();
     }
 
@@ -49,6 +50,7 @@ public class panelDias extends javax.swing.JPanel {
     private void initComponents() {
 
         lblDia = new javax.swing.JLabel();
+        lblDia1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -56,12 +58,17 @@ public class panelDias extends javax.swing.JPanel {
 
         lblDia.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
         lblDia.setText("jLabel1");
-        add(lblDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        add(lblDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
         lblDia.getAccessibleContext().setAccessibleName("dia");
+
+        lblDia1.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
+        lblDia1.setText("jLabel1");
+        add(lblDia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblDia;
+    private javax.swing.JLabel lblDia1;
     // End of variables declaration//GEN-END:variables
 }
