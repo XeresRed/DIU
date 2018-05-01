@@ -73,7 +73,7 @@ public class agendarCalendar extends javax.swing.JPanel {
 
         }
         
-        Actualizar();
+        //Actualizar();
     }
     
     public Index obtenerInd(){
