@@ -41,6 +41,9 @@ public class Index extends javax.swing.JFrame {
     com.vista.menu.MenuItems MenuItem;
     com.controlador.busqueda Oauth;
     
+    com.vista.opciones.OpcionesItems opcionesI;
+    com.vista.opciones.OpcionesTools opcionesT;
+    
     Registro panelRegistro;
     String panelAbierto = "";
     private boolean banderaUsuario;
@@ -319,7 +322,7 @@ public class Index extends javax.swing.JFrame {
             this.panelNoticias.setVisible(false);
             panelRegistro = new Registro(this);
             panelRegistro.setBounds(290, 50, 556, 474);
-            getContentPane().add(panelRegistro);
+            this.getContentPane().add(panelRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474));
             jLabel8.setForeground(deat);
             jLabel11.setVisible(true);
             panelAbierto = "registro";
@@ -416,6 +419,14 @@ public class Index extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
     
+    public void instancia_opciones_tool(com.vista.opciones.OpcionesTools to){
+        opcionesT = to;
+    }
+    
+    public void instancia_opciones_items(com.vista.opciones.OpcionesItems fi){
+        opcionesI = fi;
+    }
+    
     public void instancia_drive_tools(com.vista.Drive.DriveTools to){
         Drivetools = to;
     }
@@ -453,6 +464,11 @@ public class Index extends javax.swing.JFrame {
     private void destruye_panel_drive(){
         this.remove(Drivefiles);
         this.remove(Drivetools);
+    }
+    
+    private void destruye_panel_opciones(){
+        this.remove(opcionesI);
+        this.remove(opcionesT);
     }
     
     private void destruye_panel_agenda(){
@@ -510,6 +526,11 @@ public class Index extends javax.swing.JFrame {
             case "organizador":
                 panelAbierto = "menu";
                 destruye_panel_agenda();
+                this.set_panel_menu(true);
+                break;
+            case "opciones":
+                panelAbierto = "menu";
+                destruye_panel_opciones();
                 this.set_panel_menu(true);
                 break;
         }

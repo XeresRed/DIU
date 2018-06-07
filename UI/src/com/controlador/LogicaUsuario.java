@@ -40,7 +40,6 @@ public class LogicaUsuario {
         if(nuevoItem.getTipo()== null){        
             throw new Exception("El numero de creditos es obligatorio");
         }
-        
 
 
         UsuarioDAO.create(nuevoItem);

@@ -32,6 +32,15 @@ public class Control_fuentes {
             case "Ndes":
                 F_descripcionNueva();
                 break;
+            case "t1":
+                F_t1();
+                break;
+            case "t2":
+                F_t2();
+                break;
+            case "t3":
+                F_t3();
+                break;    
             default:
                 break;
         }
@@ -59,7 +68,46 @@ public class Control_fuentes {
             font = new Font("Arial", Font.PLAIN, 14);            
         }
     }
-
+    
+    private void F_t1() {
+        String fontName = "fuentes\\Roboto-Light.ttf" ;
+        try {
+            //Se carga la fuente
+            InputStream is =  getClass().getResourceAsStream(fontName);
+            font = Font.createFont(Font.TRUETYPE_FONT, is);
+        } catch (Exception ex) {
+            //Si existe un error se carga fuente por defecto ARIAL
+            System.err.println(fontName + " No se cargo la fuente");
+            font = new Font("Arial", Font.PLAIN, 14);            
+        }
+    }
+    
+    private void F_t2() {
+        String fontName = "fuentes\\Modern_Sans_Light.otf" ;
+        try {
+            //Se carga la fuente
+            InputStream is =  getClass().getResourceAsStream(fontName);
+            font = Font.createFont(Font.TRUETYPE_FONT, is);
+        } catch (Exception ex) {
+            //Si existe un error se carga fuente por defecto ARIAL
+            System.err.println(fontName + " No se cargo la fuente");
+            font = new Font("Arial", Font.PLAIN, 14);            
+        }
+    }
+    
+    private void F_t3() {
+        String fontName = "fuentes\\MankSans.ttf" ;
+        try {
+            //Se carga la fuente
+            InputStream is =  getClass().getResourceAsStream(fontName);
+            font = Font.createFont(Font.TRUETYPE_FONT, is);
+        } catch (Exception ex) {
+            //Si existe un error se carga fuente por defecto ARIAL
+            System.err.println(fontName + " No se cargo la fuente");
+            font = new Font("Arial", Font.PLAIN, 14);            
+        }
+    }
+    
     private void F_normal() {
         String fontName = "fuentes\\Bb.ttf" ;
         try {

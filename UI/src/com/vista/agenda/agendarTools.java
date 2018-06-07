@@ -13,6 +13,7 @@ import com.vista.agenda.crearEntrada.CrearEntrada;
 import com.vista.opciones.DialogoConfirmacion;
 import com.vista.opciones.RespuestaModal;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,12 +33,10 @@ public class agendarTools extends javax.swing.JPanel {
         vista = view;
         userAccedido = user;
         accesoR4.setVisible(false);
-        accesoR2.setVisible(false);
     }
     
     public void activaOpciones(boolean accion){
         accesoR4.setVisible(accion);
-        accesoR2.setVisible(accion);
     }
     
     public void recibir_informacion(List<Organizador> datos){
@@ -54,7 +53,6 @@ public class agendarTools extends javax.swing.JPanel {
     private void initComponents() {
 
         Drive = new javax.swing.JLabel();
-        accesoR2 = new javax.swing.JLabel();
         accesoR3 = new javax.swing.JLabel();
         accesoR4 = new javax.swing.JLabel();
         nameLBL4 = new javax.swing.JLabel();
@@ -74,24 +72,6 @@ public class agendarTools extends javax.swing.JPanel {
         Drive.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/calendario.png"))); // NOI18N
         Drive.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         add(Drive, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 110, 90));
-
-        accesoR2.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        accesoR2.setForeground(new java.awt.Color(255, 255, 255));
-        accesoR2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/calendarioA.png"))); // NOI18N
-        accesoR2.setText("Borrar cita");
-        accesoR2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        accesoR2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                accesoR2MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                accesoR2cambio_paso(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                accesoR2retorna_paso(evt);
-            }
-        });
-        add(accesoR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 230, 30));
 
         accesoR3.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         accesoR3.setForeground(new java.awt.Color(255, 255, 255));
@@ -216,18 +196,6 @@ public class agendarTools extends javax.swing.JPanel {
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 20, 20));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void accesoR2cambio_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accesoR2cambio_paso
-        // TODO add your handling code here:
-         Color n = new Color(95,204,156);
-        accesoR2.setForeground(n);
-    }//GEN-LAST:event_accesoR2cambio_paso
-
-    private void accesoR2retorna_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accesoR2retorna_paso
-        // TODO add your handling code here:
-        Color n = new Color(240,240,240);
-        accesoR2.setForeground(n);
-    }//GEN-LAST:event_accesoR2retorna_paso
-
     private void accesoR3cambio_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accesoR3cambio_paso
         // TODO add your handling code here:
         Color n = new Color(95,204,156);
@@ -262,28 +230,19 @@ public class agendarTools extends javax.swing.JPanel {
     private void accesoR4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accesoR4MouseClicked
         // TODO add your handling code here:
         vista.paso_informacion_agenda();
-        CrearEntrada Actualizar = new CrearEntrada(vista, userAccedido, orga.get(0).getTitulo(), orga.get(0).getDescripcion(), orga.get(0).getFecha(), orga.get(0).getTag(),orga.get(0).getIdorganizador());
-        Actualizar.setVisible(true);
-    }//GEN-LAST:event_accesoR4MouseClicked
-
-    private void accesoR2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accesoR2MouseClicked
-        // TODO add your handling code here:
-        vista.paso_informacion_agenda();
-        com.vista.opciones.DialogoConfirmacion a = new DialogoConfirmacion(vista, true);
-        a.cargaDatos(vista, userAccedido, "Realmente desea eliminar la entrada " + orga.get(0).getTitulo(), orga.get(0).getIdorganizador());
-        a.setVisible(true);
-        boolean respuestaModal = a.getResponse();
+        LogicaOrganizador logDao = new LogicaOrganizador();
+        List<Organizador> fest = logDao.consultarCitas();
+        ArrayList<Organizador> citasFiltradas = new ArrayList<>();
         
-        if(respuestaModal){
-            LogicaOrganizador log = new LogicaOrganizador();
-            vista.desactualizaAgenda();
-            log.eliminarCita(orga.get(0).getIdorganizador());
-            com.vista.opciones.RespuestaModal r = new RespuestaModal(vista, true);
-            String texto = "<html><body>Se ha eliminado la<br>entrada con exito.<br></body></html>";
-            r.cargaDatos("Atención", texto, "exito");
-            r.setVisible(true);
+        for (int i = 0; i < fest.size(); i++) {
+            if(fest.get(i).getFecha().equals(orga.get(0).getFecha()) && fest.get(i).getUsuariosCorreo().getCorreo().equals(userAccedido.getCorreo())){
+                citasFiltradas.add(fest.get(i));
+            }
         }
-    }//GEN-LAST:event_accesoR2MouseClicked
+        
+        ListadoCitas ListadoCita = new ListadoCitas(vista, userAccedido, citasFiltradas,orga.get(0).getFecha(),false);
+        ListadoCita.setVisible(true);
+    }//GEN-LAST:event_accesoR4MouseClicked
 
     private void Tag1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag1MouseClicked
         // TODO add your handling code here:
@@ -341,7 +300,6 @@ public class agendarTools extends javax.swing.JPanel {
     private javax.swing.JLabel Tag2;
     private javax.swing.JLabel Tag3;
     private javax.swing.JLabel Tag4;
-    private javax.swing.JLabel accesoR2;
     private javax.swing.JLabel accesoR3;
     private javax.swing.JLabel accesoR4;
     private javax.swing.JLabel jLabel1;

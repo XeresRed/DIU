@@ -9,9 +9,7 @@ import com.controlador.controlPaneles;
 import com.google.api.services.drive.model.File;
 import com.vista.Drive.archivos.FormatosArchivos;
 import com.vista.Index;
-import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
