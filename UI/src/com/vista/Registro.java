@@ -12,7 +12,6 @@ import com.modelo.Usuarios;
 import com.vista.opciones.RespuestaModal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -233,14 +232,23 @@ public class Registro extends javax.swing.JPanel {
             
             user.setContraseña(md5.getMD5(lblP1.getText()));
             com.controlador.LogicaUsuario userDao = new LogicaUsuario();
-            try {
-                userDao.registrarUsuario(user);
-                nameLBL5.setVisible(true);
-                String texto = "<html><body>Se ha registrado<br>exitosamente.<br></body></html>";
-                response.cargaDatos("¡Exito!", texto, "exito");
-                response.setVisible(true);
-            } catch (Exception ex) {
-                Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+            com.modelo.Usuarios busqueda = new Usuarios();
+            busqueda.setNombre("");
+            busqueda = userDao.BuscarUsuario(lblCorreo.getText());
+            if(busqueda == null){
+                try {
+                    userDao.registrarUsuario(user);
+                    nameLBL5.setVisible(true);
+                    String texto = "<html><body>Se ha registrado<br>exitosamente.<br></body></html>";
+                    response.cargaDatos("¡Exito!", texto, "exito");
+                    response.setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+              String texto = "<html><body>Ya existe un usuario<br>con ese correo registrado.</body></html>";
+              response.cargaDatos("¡Upps!", texto, "error");
+              response.setVisible(true);  
             }
         }else{
             String texto = "<html><body>Las contraseñas no son<br>iguales o la contraseña<br>no supera 5 caracteres.</body></html>";

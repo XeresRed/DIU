@@ -5,10 +5,15 @@
  */
 package com.vista.menu;
 
+import com.controlador.LogicaOrganizador;
+import com.modelo.Organizador;
 import com.modelo.Usuarios;
 import com.vista.Index;
+import com.vista.agenda.ListadoCitas;
 import com.vista.agenda.crearEntrada.CrearEntrada;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -39,10 +44,7 @@ public class MenuTools extends javax.swing.JPanel {
 
         nameLBL4 = new javax.swing.JLabel();
         accesoR2 = new javax.swing.JLabel();
-        nameLBL8 = new javax.swing.JLabel();
         nombreUsuario = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         accesoR1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(53, 92, 125));
@@ -60,6 +62,9 @@ public class MenuTools extends javax.swing.JPanel {
         accesoR2.setText("Consultar cita");
         accesoR2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         accesoR2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                accesoR2MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 accesoR2MouseEntered(evt);
             }
@@ -69,29 +74,13 @@ public class MenuTools extends javax.swing.JPanel {
         });
         add(accesoR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 230, 30));
 
-        nameLBL8.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        nameLBL8.setForeground(new java.awt.Color(255, 255, 255));
-        nameLBL8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/menu.png"))); // NOI18N
-        nameLBL8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        add(nameLBL8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 30, 30));
-
         nombreUsuario.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         nombreUsuario.setForeground(new java.awt.Color(255, 255, 255));
         nombreUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombreUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/usuario.png"))); // NOI18N
         nombreUsuario.setText("User");
-        nombreUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        add(nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 150, 30));
-
-        jTextArea1.setBackground(new java.awt.Color(53, 92, 125));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jScrollPane1.setViewportView(jTextArea1);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 250, 120));
+        nombreUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        add(nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 200, 30));
 
         accesoR1.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         accesoR1.setForeground(new java.awt.Color(255, 255, 255));
@@ -143,14 +132,25 @@ public class MenuTools extends javax.swing.JPanel {
         s.setVisible(true);
     }//GEN-LAST:event_accesoR1MouseClicked
 
+    private void accesoR2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accesoR2MouseClicked
+        LogicaOrganizador logDao = new LogicaOrganizador();
+        List<Organizador> fest = logDao.consultarCitas();
+        ArrayList<Organizador> citasFiltradas = new ArrayList<>();
+        
+        for (int i = 0; i < fest.size(); i++) {
+            if(fest.get(i).getUsuariosCorreo().getCorreo().equals(usuario.getCorreo())){
+                citasFiltradas.add(fest.get(i));
+            }
+        }
+        ListadoCitas ListadoCita = new ListadoCitas(vista, usuario, citasFiltradas,true);
+        ListadoCita.setVisible(true);
+    }//GEN-LAST:event_accesoR2MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accesoR1;
     private javax.swing.JLabel accesoR2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel nameLBL4;
-    private javax.swing.JLabel nameLBL8;
     private javax.swing.JLabel nombreUsuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -13,6 +13,8 @@ import com.vista.Drive.autenticacion;
 import com.vista.Index;
 import com.vista.agenda.agendarCalendar;
 import com.vista.agenda.agendarTools;
+import com.vista.opciones.OpcionesItems;
+import com.vista.opciones.OpcionesTools;
 import javax.swing.JButton;
 
 /**
@@ -28,6 +30,10 @@ public class MenuItems extends javax.swing.JPanel {
     
     com.vista.agenda.agendarCalendar calendar;
     com.vista.agenda.agendarTools Atools;
+    
+    com.vista.opciones.OpcionesItems opcionesI;
+    com.vista.opciones.OpcionesTools opcionesT;
+    
     /**
      * Creates new form MenuItems
      */
@@ -101,7 +107,17 @@ public class MenuItems extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        vista.set_panel_menu(false);
+        vista.set_posicion("opciones");
         
+        opcionesT= new OpcionesTools(vista,userAccedido);
+        vista.instancia_opciones_tool(opcionesT);
+        vista.getContentPane().add(opcionesT, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 290, 474));
+        
+        
+        opcionesI = new OpcionesItems(vista,userAccedido);
+        vista.instancia_opciones_items(opcionesI);
+        vista.getContentPane().add(opcionesI, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474));
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -109,7 +125,7 @@ public class MenuItems extends javax.swing.JPanel {
         // TODO add your handling code here:
         vista.set_panel_menu(false);
         
-        vista.set_posicion("menu");
+        vista.set_posicion("drive");
         
         vista.instancia_drive_aut(Oauth);
         

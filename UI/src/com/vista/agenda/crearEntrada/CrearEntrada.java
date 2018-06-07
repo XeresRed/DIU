@@ -12,6 +12,7 @@ import com.modelo.Usuarios;
 import com.vista.Index;
 import com.vista.opciones.RespuestaModal;
 import java.awt.Component;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -42,6 +43,10 @@ public class CrearEntrada extends javax.swing.JFrame {
      */
     public CrearEntrada() {
         initComponents();
+    }
+
+    public CrearEntrada(Index vista, Usuarios userAccedido, ArrayList<Organizador> citasFiltradas) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public void setActivador(boolean a){
@@ -113,7 +118,6 @@ public class CrearEntrada extends javax.swing.JFrame {
         nameLBL8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -285,46 +289,53 @@ public class CrearEntrada extends javax.swing.JFrame {
                 // TODO add your handling code here:
 
                 titulo = lblTittle.getText();
-                descripcion = lblDesp.getText();
-                fecha = slcFecha.getSelectedDate().getTime();
-                tag = (String) comboTag.getSelectedItem();
+                if(!(titulo.equals("Ingrese su nombre...") || titulo.equals("") )){
+                    descripcion = lblDesp.getText();
+                    fecha = slcFecha.getSelectedDate().getTime();
+                    tag = (String) comboTag.getSelectedItem();
 
-                List<Organizador> org = organizadorDAO.consultarCitas();
-                if(org.size() > 0){
-                    int i,j;
-                    int max = org.get(0).getIdorganizador();
-                    for(i = 0; i < org.size(); i++)
-                    {
-                        if(max < org.get(i).getIdorganizador())
+                    List<Organizador> org = organizadorDAO.consultarCitas();
+                    if(org.size() > 0){
+                        int i,j;
+                        int max = org.get(0).getIdorganizador();
+                        for(i = 0; i < org.size(); i++)
                         {
-                            max = org.get(i).getIdorganizador();
+                            if(max < org.get(i).getIdorganizador())
+                            {
+                                max = org.get(i).getIdorganizador();
+                            }
                         }
+                        id = max+1;
+                    }else{
+                        id = 1;
                     }
-                    id = max+1;
+
+                    Organizador nuevaCita = new Organizador();
+
+                    nuevaCita.setIdorganizador(id);
+                    nuevaCita.setTitulo(titulo);
+                    nuevaCita.setDescripcion(descripcion);
+                    nuevaCita.setFecha(fecha);
+                    nuevaCita.setTag(tag);
+                    nuevaCita.setUsuariosCorreo(userAccedido);
+
+                    organizadorDAO.registrarCita(nuevaCita);
+                    RespuestaModal response = new RespuestaModal(this, true);
+                    String texto = "<html><body>Se creo la cita<br>con exito.<br></body></html>";
+                    response.cargaDatos("¡Exito!",texto, "exito");
+                    response.setVisible(true);
+                    nameLBL8.setVisible(false);
+                    if(activador){
+                        vista.actualizaAgenda();
+                    }
+
+                    this.dispose();
                 }else{
-                    id = 1;
+                    RespuestaModal response = new RespuestaModal(this, true);
+                    String texto = "<html><body>La cita debe contar con<br>un nombre valido.<br></body></html>";
+                    response.cargaDatos("¡Upps!",texto, "error");
+                    response.setVisible(true);
                 }
-
-                Organizador nuevaCita = new Organizador();
-
-                nuevaCita.setIdorganizador(id);
-                nuevaCita.setTitulo(titulo);
-                nuevaCita.setDescripcion(descripcion);
-                nuevaCita.setFecha(fecha);
-                nuevaCita.setTag(tag);
-                nuevaCita.setUsuariosCorreo(userAccedido);
-
-                organizadorDAO.registrarCita(nuevaCita);
-                RespuestaModal response = new RespuestaModal(this, true);
-                String texto = "<html><body>Se creo la cita<br>con exito.<br></body></html>";
-                response.cargaDatos("¡Exito!",texto, "exito");
-                response.setVisible(true);
-                nameLBL8.setVisible(false);
-                if(activador){
-                    vista.actualizaAgenda();
-                }
-                
-                this.dispose();
             } catch (Exception ex) {
                 Logger.getLogger(CrearEntrada.class.getName()).log(Level.SEVERE, null, ex);
             }
