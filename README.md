@@ -21,7 +21,7 @@ Con Agendame podrás:
 
 * Tener un acceso rápido a tus documentos de Google drive.
 
-* Subir y descargar tus documentos de Google drive.
+* descargar tus documentos de Google drive.
 
 * Convertir archivos de Google drive a diversos ports como PDF, Wordl, Excel, entre otros.
 
