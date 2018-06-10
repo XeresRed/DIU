@@ -69,6 +69,7 @@ public class MenuItems extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(4, 222, 173));
         jButton1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/ajustes.png"))); // NOI18N
+        jButton1.setToolTipText("Configuración");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -82,6 +83,7 @@ public class MenuItems extends javax.swing.JPanel {
         jButton2.setBackground(new java.awt.Color(4, 222, 173));
         jButton2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/conducir.png"))); // NOI18N
+        jButton2.setToolTipText("Google drive");
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -95,6 +97,7 @@ public class MenuItems extends javax.swing.JPanel {
         jButton3.setBackground(new java.awt.Color(4, 222, 173));
         jButton3.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/calendario.png"))); // NOI18N
+        jButton3.setToolTipText("Calendario");
         jButton3.setBorder(null);
         jButton3.setBorderPainted(false);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

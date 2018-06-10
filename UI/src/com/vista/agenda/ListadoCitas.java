@@ -95,12 +95,12 @@ public class ListadoCitas extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(0, 116, 228));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/zorrillo-en-cabeza-frontal.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/calendar-round.png"))); // NOI18N
         jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 40, 50));
 
         nameLBL3.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         nameLBL3.setForeground(new java.awt.Color(255, 255, 255));
-        nameLBL3.setText("Raccoon");
+        nameLBL3.setText("Agendame");
         jPanel3.add(nameLBL3, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 12, -1, -1));
 
         jLabel4.setBackground(new java.awt.Color(230, 28, 93));
@@ -189,7 +189,7 @@ public class ListadoCitas extends javax.swing.JFrame {
         int y = 75;
         int x = 0;
         int heig = 121;
-        int wid = 515;
+        int wid = 510;
 
         listaPanelesCitas = new ArrayList<>();
         for (int i = 0; i < citasFiltradas.size(); i++) {

@@ -212,51 +212,71 @@ public class Registro extends javax.swing.JPanel {
         // TODO add your handling code here:
         com.modelo.Usuarios user = new Usuarios();
         com.controlador.encriptador md5 = new encriptador();
-        user.setCorreo(lblCorreo.getText());
-        user.setNombre(lblNombre.getText());
-        
-        /** Controlador de interfaz según la edad del usuario
-         * 0 - para personas del grupo de menores a 63 años
-         * 1 - para personas del grupo de mayores o iguales a 63 años
-         */
-        
-        if(Integer.parseInt(lblEdad.getText()) >= 63)
-        {
-            user.setTipo(Boolean.TRUE);
-        }else{
-            user.setTipo(Boolean.FALSE);
-        }
-        
         RespuestaModal response = new RespuestaModal(vista, true);
-        if (lblP1.getText().equals(lblP2.getText()) && lblP1.getText().length() >= 5) {
-            
-            user.setContraseña(md5.getMD5(lblP1.getText()));
-            com.controlador.LogicaUsuario userDao = new LogicaUsuario();
-            com.modelo.Usuarios busqueda = new Usuarios();
-            busqueda.setNombre("");
-            busqueda = userDao.BuscarUsuario(lblCorreo.getText());
-            if(busqueda == null){
-                try {
-                    userDao.registrarUsuario(user);
-                    nameLBL5.setVisible(true);
-                    String texto = "<html><body>Se ha registrado<br>exitosamente.<br></body></html>";
-                    response.cargaDatos("¡Exito!", texto, "exito");
+        try{  
+            if(lblCorreo.getText().contains("@") && lblCorreo.getText().contains(".") && !(lblCorreo.getText().equals("agendame@gmail.com"))){
+                user.setCorreo(lblCorreo.getText());
+                
+                if(!lblNombre.getText().equals("Ingrese su nombre...")){
+                user.setNombre(lblNombre.getText());
+                /** Controlador de interfaz según la edad del usuario
+                 * 0 - para personas del grupo de menores a 63 años
+                 * 1 - para personas del grupo de mayores o iguales a 63 años
+                 */
+
+                if(Integer.parseInt(lblEdad.getText()) >= 63)
+                {
+                    user.setTipo(Boolean.TRUE);
+                }else{
+                    user.setTipo(Boolean.FALSE);
+                }
+
+
+                if (lblP1.getText().equals(lblP2.getText()) && lblP1.getText().length() >= 5) {
+
+                    user.setContraseña(md5.getMD5(lblP1.getText()));
+                    com.controlador.LogicaUsuario userDao = new LogicaUsuario();
+                    com.modelo.Usuarios busqueda = new Usuarios();
+                    busqueda.setNombre("");
+                    busqueda = userDao.BuscarUsuario(lblCorreo.getText());
+                    if(busqueda == null){
+                        try {
+                            userDao.registrarUsuario(user);
+                            nameLBL5.setVisible(true);
+                            String texto = "<html><body>Se ha registrado<br>exitosamente.<br></body></html>";
+                            response.cargaDatos("¡Exito!", texto, "exito");
+                            response.setVisible(true);
+                        } catch (Exception ex) {
+                            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }else{
+                      String texto = "<html><body>Ya existe un usuario<br>con ese correo registrado.</body></html>";
+                      response.cargaDatos("¡Upps!", texto, "error");
+                      response.setVisible(true);  
+                    }
+                }else{
+                    String texto = "<html><body>Las contraseñas no son<br>iguales o la contraseña<br>no supera 5 caracteres.</body></html>";
+                    response.cargaDatos("¡Upps!", texto, "error");
                     response.setVisible(true);
-                } catch (Exception ex) {
-                    Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }else{
-              String texto = "<html><body>Ya existe un usuario<br>con ese correo registrado.</body></html>";
-              response.cargaDatos("¡Upps!", texto, "error");
-              response.setVisible(true);  
-            }
-        }else{
-            String texto = "<html><body>Las contraseñas no son<br>iguales o la contraseña<br>no supera 5 caracteres.</body></html>";
-            response.cargaDatos("¡Upps!", texto, "error");
+                String texto = "<html><body>Debe ingresar un nombre<br>valido.</body></html>";
+                response.cargaDatos("¡Upps!", texto, "error");
                 response.setVisible(true);
+            }
+          }else{
+            String texto = "<html><body>Debe ingresar un correo<br>valido, Ejemplo:<br>agendame@gmail.com.</body></html>";
+            response.cargaDatos("¡Upps!", texto, "error");
+            response.setVisible(true);
+          }
         }
-        
-        
+        catch(NumberFormatException nfe)  
+        {  
+            String texto = "<html><body>Debe ingresar una<br>edad valida.</body></html>";
+            response.cargaDatos("¡Upps!", texto, "error");
+            response.setVisible(true);  
+        } 
+    
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

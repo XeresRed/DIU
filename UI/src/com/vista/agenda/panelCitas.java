@@ -124,13 +124,13 @@ public class panelCitas extends javax.swing.JPanel implements MouseListener{
                 BttonMouseExited(evt);
             }
         });
-        add(Btton, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 95, 40));
+        add(Btton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 95, 40));
 
         Btton1.setBackground(new java.awt.Color(255, 255, 255));
         Btton1.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         Btton1.setForeground(new java.awt.Color(255, 102, 102));
         Btton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/garbage.png"))); // NOI18N
-        Btton1.setText("Borrar");
+        Btton1.setText("Borrar cita");
         Btton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Btton1.setOpaque(true);
         Btton1.setPreferredSize(new java.awt.Dimension(68, 20));
@@ -142,7 +142,7 @@ public class panelCitas extends javax.swing.JPanel implements MouseListener{
                 Btton1MouseExited(evt);
             }
         });
-        add(Btton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, 80, 40));
+        add(Btton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 100, 40));
 
         titulo1.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         titulo1.setText("Titulo");

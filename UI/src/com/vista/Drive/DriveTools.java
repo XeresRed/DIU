@@ -58,7 +58,6 @@ public class DriveTools extends javax.swing.JPanel {
 
         lblDescargar = new javax.swing.JLabel();
         Drive = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(53, 92, 125));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -66,8 +65,11 @@ public class DriveTools extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(290, 425));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblDescargar.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
+        lblDescargar.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         lblDescargar.setForeground(new java.awt.Color(255, 255, 255));
+        lblDescargar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDescargar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/guardado2.png"))); // NOI18N
+        lblDescargar.setLabelFor(lblDescargar);
         lblDescargar.setText("Descargar archivo");
         lblDescargar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblDescargar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -81,15 +83,12 @@ public class DriveTools extends javax.swing.JPanel {
                 lblDescargarMouseExited(evt);
             }
         });
-        add(lblDescargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, 80));
+        add(lblDescargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 250, 80));
 
         Drive.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Drive.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/conducir.png"))); // NOI18N
         Drive.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         add(Drive, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 110, 90));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/archivo(1).png"))); // NOI18N
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 30, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void descargarF(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_descargarF
@@ -258,7 +257,6 @@ public class DriveTools extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Drive;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblDescargar;
     // End of variables declaration//GEN-END:variables
 

@@ -75,7 +75,7 @@ public class agendarTools extends javax.swing.JPanel {
 
         accesoR3.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         accesoR3.setForeground(new java.awt.Color(255, 255, 255));
-        accesoR3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/calendarioA.png"))); // NOI18N
+        accesoR3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/calendarAñadir.png"))); // NOI18N
         accesoR3.setText("Crear nueva cita");
         accesoR3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         accesoR3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -93,7 +93,7 @@ public class agendarTools extends javax.swing.JPanel {
 
         accesoR4.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         accesoR4.setForeground(new java.awt.Color(255, 255, 255));
-        accesoR4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/calendarioc.png"))); // NOI18N
+        accesoR4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/calendarConsulta.png"))); // NOI18N
         accesoR4.setText("Consultar cita");
         accesoR4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         accesoR4.addMouseListener(new java.awt.event.MouseAdapter() {
