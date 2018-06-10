@@ -2,10 +2,10 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group>
             <file>file:/C:/Users/Juan%20Camilo/Documents/DIU/UI/src/com/vista/Index.java</file>
             <file>file:/C:/Users/Juan%20Camilo/Documents/DIU/UI/src/com/vista/opciones/RespuestaModal.java</file>
+            <file>file:/C:/Users/Juan%20Camilo/Documents/DIU/UI/src/com/vista/Drive/autenticacion.java</file>
             <file>file:/C:/Users/Juan%20Camilo/Documents/DIU/UI/src/com/vista/agenda/crearEntrada/CrearEntrada.java</file>
             <file>file:/C:/Users/Juan%20Camilo/Documents/DIU/UI/src/com/vista/menu/MenuTools.java</file>
             <file>file:/C:/Users/Juan%20Camilo/Documents/DIU/UI/src/com/vista/agenda/panelCitas.java</file>
@@ -15,8 +15,5 @@
             <file>file:/C:/Users/Juan%20Camilo/Documents/DIU/UI/src/com/vista/agenda/agendarTools.java</file>
             <file>file:/C:/Users/Juan%20Camilo/Documents/DIU/UI/src/com/vista/agenda/ListadoCitas.java</file>
         </group>
-=======
-        <group/>
->>>>>>> master
     </open-files>
 </project-private>

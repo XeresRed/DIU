@@ -17,6 +17,7 @@ import com.vista.menu.MenuItems;
 import com.vista.menu.MenuTools;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +73,8 @@ public class Index extends javax.swing.JFrame {
         jLabel7.setText(myString);
         this.jLabel5.setFont(df.MyFont(1, 22f));
         this.jLabel7.setFont(df.MyFont(1, 22f));
+        
+        setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/imagen/calendar-round.png")));
     }
 
     /**
@@ -96,7 +99,6 @@ public class Index extends javax.swing.JFrame {
         nameLBL6 = new javax.swing.JLabel();
         panelNoticias = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         Drive = new javax.swing.JLabel();
@@ -126,9 +128,9 @@ public class Index extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Myanmar Text", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(151, 7, 71));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Agendame");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/logo.jpeg"))); // NOI18N
         jLabel2.setToolTipText("");
-        panelLogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 210, 120));
+        panelLogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 270, 120));
 
         txtEmailUser.setFont(new java.awt.Font("Yu Gothic UI", 0, 16)); // NOI18N
         txtEmailUser.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -192,12 +194,12 @@ public class Index extends javax.swing.JFrame {
 
         panelLogin.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 230, 10));
 
-        nameLBL4.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        nameLBL4.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         nameLBL4.setLabelFor(txtEmailUser);
         nameLBL4.setText("Contraseña:");
         panelLogin.add(nameLBL4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
 
-        nameLBL6.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        nameLBL6.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         nameLBL6.setLabelFor(txtEmailUser);
         nameLBL6.setText("Correo Electronico:");
         panelLogin.add(nameLBL6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
@@ -208,10 +210,9 @@ public class Index extends javax.swing.JFrame {
         panelNoticias.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         panelNoticias.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/calendar.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/weekly-calendar.png"))); // NOI18N
         panelNoticias.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 130, 130));
-        panelNoticias.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 160, 10));
-        panelNoticias.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 160, 10));
+        panelNoticias.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 530, 10));
 
         jLabel5.setText("b");
         jLabel5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -238,21 +239,22 @@ public class Index extends javax.swing.JFrame {
         jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
         panelNoticias.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 10, 200));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/enamorado.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/rubik.png"))); // NOI18N
         panelNoticias.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, 70, 80));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/codificacion.png"))); // NOI18N
-        panelNoticias.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 70, 80));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/Guardado.png"))); // NOI18N
+        panelNoticias.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 70, 80));
 
-        nameLBL1.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        nameLBL1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         nameLBL1.setLabelFor(txtEmailUser);
         nameLBL1.setText("Facíl de usar.");
-        panelNoticias.add(nameLBL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 200, -1));
+        nameLBL1.setToolTipText("");
+        panelNoticias.add(nameLBL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, 150, -1));
 
-        nameLBL5.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        nameLBL5.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         nameLBL5.setLabelFor(txtEmailUser);
-        nameLBL5.setText("Sube y descarga archivos.");
-        panelNoticias.add(nameLBL5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 200, -1));
+        nameLBL5.setText("Guarda tus archivos.");
+        panelNoticias.add(nameLBL5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 170, -1));
 
         getContentPane().add(panelNoticias, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 556, 474));
         panelNoticias.getAccessibleContext().setAccessibleName("jpanel2");
@@ -260,12 +262,12 @@ public class Index extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(0, 116, 228));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/zorrillo-en-cabeza-frontal.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/calendar-round.png"))); // NOI18N
         jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 40, 50));
 
         nameLBL3.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         nameLBL3.setForeground(new java.awt.Color(255, 255, 255));
-        nameLBL3.setText("Raccoon");
+        nameLBL3.setText("Agendame");
         jPanel3.add(nameLBL3, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 12, -1, -1));
 
         jLabel4.setBackground(new java.awt.Color(230, 28, 93));
@@ -620,7 +622,6 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;

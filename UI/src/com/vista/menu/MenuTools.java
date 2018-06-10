@@ -56,9 +56,9 @@ public class MenuTools extends javax.swing.JPanel {
         nameLBL4.setText("Opciones rápidas");
         add(nameLBL4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
-        accesoR2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        accesoR2.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         accesoR2.setForeground(new java.awt.Color(255, 255, 255));
-        accesoR2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/calendarioc.png"))); // NOI18N
+        accesoR2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/calendarConsulta.png"))); // NOI18N
         accesoR2.setText("Consultar cita");
         accesoR2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         accesoR2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -72,7 +72,7 @@ public class MenuTools extends javax.swing.JPanel {
                 accesoR2MouseExited(evt);
             }
         });
-        add(accesoR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 230, 30));
+        add(accesoR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 230, 40));
 
         nombreUsuario.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         nombreUsuario.setForeground(new java.awt.Color(255, 255, 255));
@@ -82,9 +82,9 @@ public class MenuTools extends javax.swing.JPanel {
         nombreUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         add(nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 200, 30));
 
-        accesoR1.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        accesoR1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         accesoR1.setForeground(new java.awt.Color(255, 255, 255));
-        accesoR1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/calendarioA.png"))); // NOI18N
+        accesoR1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/metaforas/calendarAñadir.png"))); // NOI18N
         accesoR1.setText("Crear nueva cita");
         accesoR1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         accesoR1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -98,7 +98,7 @@ public class MenuTools extends javax.swing.JPanel {
                 retorna_paso(evt);
             }
         });
-        add(accesoR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 230, 30));
+        add(accesoR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 260, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void cambio_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cambio_paso
