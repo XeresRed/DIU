@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -58,7 +59,6 @@ public class agendarCalendar extends javax.swing.JPanel {
         ahoraCal.set(year,fecha.get(Calendar.MONTH),1);
         jLabel1.setText("Dias del mes de " + meses[fecha.get(Calendar.MONTH)] );
         int contadorDias = ahoraCal.get(Calendar.DAY_OF_WEEK) - 1;
-        
         com = new controlPanelesDias(this);
         int y = 25;
         int x = 0;
@@ -66,11 +66,11 @@ public class agendarCalendar extends javax.swing.JPanel {
         int contador = 0;
         int wid = 73;
         for (int i = 0; i < numeroDiasMes; i++) {
-            if(contadorDias >=strDays.length ){
-                contadorDias = ahoraCal.get(Calendar.DAY_OF_WEEK) - 1;
+            if(contadorDias >= strDays.length ){
+                contadorDias = 0;
             }
             if(contador == 7){
-                y += heig;  
+                y += heig;   
                 contador = 0;
                 x = 0;
             }
