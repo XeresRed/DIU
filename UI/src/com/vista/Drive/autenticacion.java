@@ -67,7 +67,8 @@ public class autenticacion extends javax.swing.JFrame {
         texturl = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
         setBackground(new java.awt.Color(255, 255, 102));
         setBounds(new java.awt.Rectangle(0, 0, 280, 480));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

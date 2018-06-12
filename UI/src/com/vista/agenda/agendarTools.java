@@ -13,8 +13,10 @@ import com.vista.agenda.crearEntrada.CrearEntrada;
 import com.vista.opciones.DialogoConfirmacion;
 import com.vista.opciones.RespuestaModal;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -117,66 +119,25 @@ public class agendarTools extends javax.swing.JPanel {
         Tag1.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         Tag1.setForeground(new java.awt.Color(255, 255, 255));
         Tag1.setText("Bajo");
-        Tag1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Tag1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Tag1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                Tag1cambio_paso(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                Tag1retorna_paso(evt);
-            }
-        });
+        Tag1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         add(Tag1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 180, 20));
 
         Tag2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         Tag2.setForeground(new java.awt.Color(255, 255, 255));
         Tag2.setText("Urgente");
-        Tag2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Tag2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                Tag2cambio_paso(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                Tag2retorna_paso(evt);
-            }
-        });
+        Tag2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         add(Tag2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 180, 20));
 
         Tag3.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         Tag3.setForeground(new java.awt.Color(255, 255, 255));
         Tag3.setText("Importante");
-        Tag3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Tag3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Tag3MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                Tag3cambio_paso(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                Tag3retorna_paso(evt);
-            }
-        });
+        Tag3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         add(Tag3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 180, 20));
 
         Tag4.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         Tag4.setForeground(new java.awt.Color(255, 255, 255));
         Tag4.setText("Normal");
-        Tag4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Tag4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Tag4MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                Tag4cambio_paso(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                Tag4retorna_paso(evt);
-            }
-        });
+        Tag4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         add(Tag4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 180, 20));
 
         jLabel1.setBackground(new java.awt.Color(198, 255, 0));
@@ -233,65 +194,22 @@ public class agendarTools extends javax.swing.JPanel {
         LogicaOrganizador logDao = new LogicaOrganizador();
         List<Organizador> fest = logDao.consultarCitas();
         ArrayList<Organizador> citasFiltradas = new ArrayList<>();
-        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaComoCadena = sdf.format(orga.get(0).getFecha());
+     
         for (int i = 0; i < fest.size(); i++) {
-            if(fest.get(i).getFecha().equals(orga.get(0).getFecha()) && fest.get(i).getUsuariosCorreo().getCorreo().equals(userAccedido.getCorreo())){
+            String fechaComoCadena1 = sdf.format(fest.get(i).getFecha());
+            if(fechaComoCadena1.equals(fechaComoCadena) && fest.get(i).getUsuariosCorreo().getCorreo().equals(userAccedido.getCorreo())){
                 citasFiltradas.add(fest.get(i));
+            }
+            if(fest.get(i).getUsuariosCorreo().getCorreo().equals(userAccedido.getCorreo())){
+                
             }
         }
         
         ListadoCitas ListadoCita = new ListadoCitas(vista, userAccedido, citasFiltradas,orga.get(0).getFecha(),false);
         ListadoCita.setVisible(true);
     }//GEN-LAST:event_accesoR4MouseClicked
-
-    private void Tag1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag1MouseClicked
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_Tag1MouseClicked
-
-    private void Tag1cambio_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag1cambio_paso
-        // TODO add your handling code here:
-        Color n = new Color(95,204,156);
-        Tag1.setForeground(n);
-    }//GEN-LAST:event_Tag1cambio_paso
-
-    private void Tag1retorna_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag1retorna_paso
-        // TODO add your handling code here:
-        Color n = new Color(240,240,240);
-        Tag1.setForeground(n);
-    }//GEN-LAST:event_Tag1retorna_paso
-
-    private void Tag2cambio_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag2cambio_paso
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Tag2cambio_paso
-
-    private void Tag2retorna_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag2retorna_paso
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Tag2retorna_paso
-
-    private void Tag3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Tag3MouseClicked
-
-    private void Tag3cambio_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag3cambio_paso
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Tag3cambio_paso
-
-    private void Tag3retorna_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag3retorna_paso
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Tag3retorna_paso
-
-    private void Tag4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag4MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Tag4MouseClicked
-
-    private void Tag4cambio_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag4cambio_paso
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Tag4cambio_paso
-
-    private void Tag4retorna_paso(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tag4retorna_paso
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Tag4retorna_paso
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
